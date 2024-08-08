@@ -2,6 +2,11 @@ import { useEffect, useState } from "react";
 import { Route, Router, Routes, useNavigate } from "react-router-dom";
 import React from "react";
 import Game from "./pages/Game";
+import Me from "./pages/Me";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import Welcome from "./pages/Welcome";
+import About from "./pages/About";
 
 function App() {
   const storedToken = localStorage.getItem("token");
@@ -108,8 +113,6 @@ function App() {
               setUserScore={setUserScore}
               userBadges={userBadges}
               setUserBadges={setUserBadges}
-              totalScore={totalScore}
-              setTotalScore={setTotalScore}
             />
           }
         />
@@ -120,7 +123,6 @@ function App() {
               isLoggedIn={isLoggedIn}
               userInfo={userInfo}
               userScore={userScore}
-              totalScore={totalScore}
               userBadges={userBadges}
               setIsLoggedIn={setIsLoggedIn}
             />

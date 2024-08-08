@@ -50,34 +50,15 @@ function Game({
           setUserScore={setUserScore}
           userBadges={userBadges}
           setUserBadges={setUserBadges}
-          sliderValue={sliderValue}
-          gameSelector={gameSelector}
           userInfo={userInfo}
           totalScore={totalScore}
           setTotalScore={setTotalScore}
-        />
-
-        <GameSelector
-          setGameSelector={setGameSelector}
-          setGotRight={setGotRight}
-          setGotWrong={setGotWrong}
-        />
-
-        <Slider
-          setSliderValue={setSliderValue}
-          sliderValue={sliderValue}
-          setGotRight={setGotRight}
-          setGotWrong={setGotWrong}
         />
 
         <GamePlay
-          sliderValue={sliderValue}
-          gameSelector={gameSelector}
           userScore={userScore}
           setUserScore={setUserScore}
           userInfo={userInfo}
-          setTotalScore={setTotalScore}
-          totalScore={totalScore}
           gotRight={gotRight}
           gotWrong={gotWrong}
           setGotRight={setGotRight}
