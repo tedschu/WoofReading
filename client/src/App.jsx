@@ -76,14 +76,8 @@ function App() {
               security_question_2: data.security_question_2,
               security_answer_2: data.security_answer_2,
             });
-            setUserScore(data.score);
-            setUserBadges(data.badge);
-            setTotalScore(
-              parseInt(data.score.addition_score) +
-                parseInt(data.score.subtraction_score) +
-                parseInt(data.score.multiplication_score) +
-                parseInt(data.score.division_score)
-            );
+            setUserScore(data.score_reading);
+            setUserBadges(data.badge_reading);
           }
           // ADDED TO HANDLE CASE WHERE API CALL IS BAD OR HASN'T COME BACK
           else if (!response.ok) {
@@ -97,6 +91,9 @@ function App() {
       getUserData();
     }
   }, [isLoggedIn]); // SET TO ISLOGGEDIN TO ENSURE RELOAD POST LOGIN AND REGISTRATION
+
+  console.log("This is userBadges:", userBadges);
+  console.log("This is userScore:", userScore);
 
   return (
     <>

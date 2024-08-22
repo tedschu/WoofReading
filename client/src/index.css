@@ -87,7 +87,7 @@ button {
 .button.login {
   width: 200px;
   border-radius: 10px;
-  background-image: linear-gradient(#0085bd, #71afcb);
+  background-image: linear-gradient(#d4492b, #ff8b71);
   color: white;
   font-size: 25px;
   border: none;
@@ -100,7 +100,7 @@ button {
   border-radius: 10px;
   color: white;
   font-size: 25px;
-  border: 1px solid #0085bd;
+  border: 1px solid #d4492b;
   box-shadow: 2px 2px 6px #828282;
 }
 
@@ -360,7 +360,7 @@ button {
 nav {
   height: 65px;
   width: 100%;
-  background-image: linear-gradient(#cb4527, #ea9448);
+  background-image: linear-gradient(#04628a, #7dc2e0);
   display: grid;
   grid-template-columns: [first] 25% [line2] 50% [line3] 25%;
   position: fixed;
@@ -681,7 +681,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
   /* background: #d4492b; */
   justify-content: center;
-  background-image: linear-gradient(#d4492b, #ec9c52);
+  background-image: linear-gradient(#04628a, #7dc2e0);
   height: 100vh;
 }
 
@@ -740,7 +740,7 @@ input[type="number"]::-webkit-inner-spin-button {
 
   /* background: #d4492b; */
   justify-content: center;
-  background-image: linear-gradient(#d4492b, #ec9c52);
+  background-image: linear-gradient(#04628a, #7dc2e0);
   /* height: 100vh; */
 }
 

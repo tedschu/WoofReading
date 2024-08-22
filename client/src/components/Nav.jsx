@@ -12,7 +12,7 @@ function Nav({ isLoggedIn, userInfo }) {
           <img src={woofMathLogo} alt="" />
         </Link>
 
-        <div className="navTitle">Woof Math</div>
+        <div className="navTitle">Woof Reading</div>
 
         {isLoggedIn && userInfo && userInfo.username && (
           <Link to={"/me"} className="navUser">

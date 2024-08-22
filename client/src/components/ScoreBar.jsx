@@ -26,7 +26,7 @@ function ScoreBar({
       <div className="scoreBarContainer">
         <div className="scoresContainer">
           <div className="totalScore">
-            <h1 className="scoreFont">{totalScore}</h1>
+            <h1 className="scoreFont">{userScore.score}</h1>
             <h5>TOTAL SCORE</h5>
           </div>
         </div>
