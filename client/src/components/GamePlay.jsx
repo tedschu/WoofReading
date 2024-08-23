@@ -21,10 +21,6 @@ function GamePlay({
   setModalBadge,
 }) {
   const [questionCount, setQuestionCount] = useState(1);
-  const [mathOperator, setMathOperator] = useState("+");
-  const [firstNumber, setFirstNumber] = useState("");
-  const [secondNumber, setSecondNumber] = useState("");
-  const [thirdNumber, setThirdNumber] = useState("");
   const [userAnswer, setUserAnswer] = useState("");
   const [questionResult, setQuestionResult] = useState("");
   const [submitted, setSubmitted] = useState(false);

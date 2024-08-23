@@ -45,6 +45,7 @@ app.use(baseQuery + "users", require("./users"));
 app.use(baseQuery + "badges", require("./badges"));
 // app.use(baseQuery + "game_state", require("./game_state"));
 app.use(baseQuery + "scores", require("./scores"));
+app.use("/anthropic", require("../anthropic/anthropicAPI")); // for Anthropic API routes / endpoints
 
 app.use(express.static(path.join(__dirname, "/../../client/dist")));
 app.use("*", express.static(path.join(__dirname, "/../../client/dist")));
