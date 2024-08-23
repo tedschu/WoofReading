@@ -14,7 +14,8 @@ const anthropic = new Anthropic({
 });
 
 // **** EACH (GET) TO GENERATE A STORY WILL INCLUDE:
-// (1) THE "TOPIC" FOR THE STORY
+// (1) THE "TOPIC" FOR THE STORY PASSED FROM THE USER VIA THE BODY (E.G. DOGS, OUTER SPACE, ETC.)
+// (2) A "DIFFICULTY LEVEL" (1-5) WHICH WILL DETERMINE THE LENGTH OF THE STORY (150 - 400 WORDS) AND THE TYPE OF WORDS USED
 
 // Function to establish connection to the Anthropic API
 async function callAnthropicAPI(messages, system = "") {
@@ -54,21 +55,22 @@ async function callAnthropicAPI(messages, system = "") {
 
 // })
 
-callAnthropicAPI(
-  [
-    {
-      role: "user",
-      content: [
-        {
-          type: "text",
-          text: "Generate a 200-word story about outer space that we'll then generate a few questions about afterwards to test a user's reading comprehension. Make sure that the story is unique each time the API is called.",
-        },
-      ],
-    },
-  ],
-  "You are a grade school reading tutor."
-)
-  .then((result) => console.log("Test result:", result))
-  .catch((error) => console.error("Test error:", error));
+// FUNCTION TO TEST THE API CALL:
+// callAnthropicAPI(
+//   [
+//     {
+//       role: "user",
+//       content: [
+//         {
+//           type: "text",
+//           text: "Generate a 200-word story about outer space that we'll then generate a few questions about afterwards to test a user's reading comprehension. Make sure that the story is unique each time the API is called.",
+//         },
+//       ],
+//     },
+//   ],
+//   "You are a grade school reading tutor."
+// )
+//   .then((result) => console.log("Test result:", result))
+//   .catch((error) => console.error("Test error:", error));
 
 module.exports = router;
