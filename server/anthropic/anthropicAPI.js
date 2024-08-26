@@ -54,7 +54,7 @@ router.get("/generate_story", async (req, res) => {
         content: [
           {
             type: "text",
-            text: `Generate a ${story_length}-word story with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the story. Return the result as a valid JSON object with the following structure: Title: [your title here], Story: [your story here], Question 1: [your question 1 here].`,
+            text: `Generate a ${story_length}-word story with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the story. Return the result as a valid JSON object with the following structure: Title: [your title here], Story: [your story here], Question_1: [your question 1 here].`,
           },
         ],
       },
