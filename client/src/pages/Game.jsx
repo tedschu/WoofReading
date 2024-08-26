@@ -5,6 +5,8 @@ import ScoreBar from "../components/ScoreBar";
 import GamePlay from "../components/GamePlay";
 import Nav from "../components/Nav";
 import BadgeModal from "../components/BadgeModal";
+import Slider from "../components/Slider";
+import StorySelector from "../components/StorySelector";
 
 function Game({
   isLoggedIn,
@@ -18,6 +20,7 @@ function Game({
   setTotalScore,
 }) {
   const [sliderValue, setSliderValue] = useState(1);
+  const [storySelector, setStorySelector] = useState("outer space");
   const [gotRight, setGotRight] = useState(false);
   const [gotWrong, setGotWrong] = useState(false);
 
@@ -53,6 +56,19 @@ function Game({
           userInfo={userInfo}
           totalScore={totalScore}
           setTotalScore={setTotalScore}
+        />
+
+        <StorySelector
+          setStorySelector={setStorySelector}
+          setGotRight={setGotRight}
+          setGotWrong={setGotWrong}
+        />
+
+        <Slider
+          setSliderValue={setSliderValue}
+          sliderValue={sliderValue}
+          setGotRight={setGotRight}
+          setGotWrong={setGotWrong}
         />
 
         <GamePlay

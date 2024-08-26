@@ -92,8 +92,8 @@ function App() {
     }
   }, [isLoggedIn]); // SET TO ISLOGGEDIN TO ENSURE RELOAD POST LOGIN AND REGISTRATION
 
-  console.log("This is userBadges:", userBadges);
-  console.log("This is userScore:", userScore);
+  // console.log("This is userBadges:", userBadges);
+  // console.log("This is userScore:", userScore);
 
   return (
     <>

@@ -15,7 +15,9 @@ const anthropic = new Anthropic({
 
 // **** EACH (GET) TO GENERATE A STORY WILL INCLUDE:
 // (1) THE "TOPIC" FOR THE STORY PASSED FROM THE USER VIA THE BODY (E.G. DOGS, OUTER SPACE, ETC.)
-// (2) A "DIFFICULTY LEVEL" (1-5) WHICH WILL DETERMINE THE LENGTH OF THE STORY (150 - 400 WORDS) AND THE TYPE OF WORDS USED
+// (2) A "DIFFICULTY LEVEL" (1-5)
+// (3) A STORY LENGTH, BASED ON DIFFICULTY LEVEL (EX. FROM 250 - 700 WORDS)
+// ***** YOU MAY ALSO NEED TO PASS A RANDOM VARIABLE TO HELP ENSURE THAT STORIES ARE UNIQUE EACH TIME, AND/OR TO CHANGE THE TOPIC EACH TIME.
 
 // Function to establish connection to the Anthropic API
 async function callAnthropicAPI(messages, system = "") {
@@ -23,7 +25,7 @@ async function callAnthropicAPI(messages, system = "") {
     const response = await anthropic.messages.create({
       model: "claude-3-haiku-20240307",
       max_tokens: 1000,
-      temperature: 0.5,
+      temperature: 0.9,
       system: system,
       messages: messages,
     });
@@ -35,27 +37,48 @@ async function callAnthropicAPI(messages, system = "") {
 }
 
 // Route to generate (GET) a new story based on user selection of story topic
-// router.get('/generate_story', async(req, res) => {
-//   try {
-//     const messages = [
-//       {
-//         role: "user",
-//         content: [
-//           {
-//             type: "text",
-//             text:
-//           }
-//         ]
-//       }
-//     ]
+router.get("/generate_story", async (req, res) => {
+  try {
+    // ******** TODO: Need to pass these from user inputs in frontend
+    const story_length = req.query.story_length;
+    const difficulty = req.query.difficulty;
+    const story_topic = req.query.story_topic;
 
-//   } catch (error) {
+    if (!story_length || !difficulty || !story_topic) {
+      return res.status(400).json({ error: "Missing required parameters" });
+    }
 
-//   }
+    const messages = [
+      {
+        role: "user",
+        content: [
+          {
+            type: "text",
+            text: `Generate a ${story_length}-word story with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the story. Return the result as a valid JSON object with the following structure: Title: [your title here], Story: [your story here], Question 1: [your question 1 here].`,
+          },
+        ],
+      },
+    ];
 
-// })
+    const system =
+      "You are a reading tutor for students in grade school, and will be generating stories to test reading comprehension. All of the stories need to be age-appropriate, with no offensive language or themes.";
 
-// FUNCTION TO TEST THE API CALL:
+    // Uses messages and system variables to call "callAnthropicAPI" function
+    const response = await callAnthropicAPI(messages, system);
+
+    // Parse the response, replacing all \n breaks and "\" with empty strings, and convert it to readable JSON (storyData)
+    const cleanedResponse = response.replace(/\n/g, "").replace(/\\/g, "");
+    const storyData = JSON.parse(cleanedResponse);
+
+    // Sends back storyData JSON object with Title, Story, Question 1, Question 2, Question 3 keys.
+    res.json(storyData);
+  } catch (error) {
+    console.error("Error generating story:", error);
+    res.status(500).json({ error: "Failed to generate story." });
+  }
+});
+
+// // FUNCTION TO TEST THE API CALL:
 // callAnthropicAPI(
 //   [
 //     {
@@ -63,12 +86,12 @@ async function callAnthropicAPI(messages, system = "") {
 //       content: [
 //         {
 //           type: "text",
-//           text: "Generate a 200-word story about outer space that we'll then generate a few questions about afterwards to test a user's reading comprehension. Make sure that the story is unique each time the API is called.",
+//           text: `Generate a 300-word story with a difficulty level of 2 (out of 5) about the rain forest, followed by 3 questions about the story. Ensure that the block of questions is preceded by the line "Comprehension questions:`,
 //         },
 //       ],
 //     },
 //   ],
-//   "You are a grade school reading tutor."
+//   "You are a reading tutor for students in grade school, and will be generating stories to test reading comprehension. All of the stories need to be age-appropriate, with no offensive language or themes."
 // )
 //   .then((result) => console.log("Test result:", result))
 //   .catch((error) => console.error("Test error:", error));
