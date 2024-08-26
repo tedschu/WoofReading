@@ -20,7 +20,8 @@ function Game({
   setTotalScore,
 }) {
   const [sliderValue, setSliderValue] = useState(1);
-  const [storySelector, setStorySelector] = useState("outer space");
+  const [storyLength, setStoryLength] = useState(250);
+  const [storySelection, setStorySelection] = useState("outer space");
   const [gotRight, setGotRight] = useState(false);
   const [gotWrong, setGotWrong] = useState(false);
 
@@ -59,7 +60,7 @@ function Game({
         />
 
         <StorySelector
-          setStorySelector={setStorySelector}
+          setStorySelection={setStorySelection}
           setGotRight={setGotRight}
           setGotWrong={setGotWrong}
         />
@@ -69,6 +70,7 @@ function Game({
           sliderValue={sliderValue}
           setGotRight={setGotRight}
           setGotWrong={setGotWrong}
+          setStoryLength={setStoryLength}
         />
 
         <GamePlay
@@ -85,6 +87,8 @@ function Game({
           setIsModalOpen={setIsModalOpen}
           modalBadge={modalBadge}
           setModalBadge={setModalBadge}
+          storyLength={storyLength}
+          storySelection={storySelection}
         />
 
         <BadgeModal

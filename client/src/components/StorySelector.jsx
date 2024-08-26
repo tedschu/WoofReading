@@ -6,7 +6,7 @@ import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 export default function StorySelector({
-  setStorySelector,
+  setStorySelection,
   setGotRight,
   setGotWrong,
 }) {
@@ -15,7 +15,7 @@ export default function StorySelector({
   const handleChange = (event, newAlignment) => {
     if (newAlignment != null) {
       setAlignment(newAlignment);
-      setStorySelector(newAlignment);
+      setStorySelection(newAlignment);
       setGotRight(false);
       setGotWrong(false);
     }
@@ -51,10 +51,10 @@ export default function StorySelector({
             justifyContent: "center",
           }}
         >
-          <ToggleButton value="dolphins">Dolphins</ToggleButton>
-          <ToggleButton value="subtraction">Subtract</ToggleButton>
-          <ToggleButton value="multiplication">Multiply</ToggleButton>
-          <ToggleButton value="division">Divide</ToggleButton>
+          <ToggleButton value="goldendoodles">Goldendoodles</ToggleButton>
+          <ToggleButton value="pirates">Pirates</ToggleButton>
+          <ToggleButton value="outer space">Outer space</ToggleButton>
+          <ToggleButton value="Football">Football</ToggleButton>
         </ToggleButtonGroup>
       </div>
     </>

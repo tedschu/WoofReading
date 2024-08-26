@@ -556,14 +556,14 @@ nav {
 }
 
 /* GAME PLAY CONTAINER and BOX STYLING */
-.gamePlayContainer {
+.storyContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
 }
 
-.gamePlay {
+.storyContentContainer {
   background-color: #f6fcff;
   display: flex;
   flex-direction: column;

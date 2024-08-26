@@ -25,12 +25,34 @@ export default function DiscreteSlider({
   sliderValue,
   setGotRight,
   setGotWrong,
+  setStoryLength,
 }) {
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
     setGotRight(false);
     setGotWrong(false);
+    storyLength(newValue);
   };
+
+  function storyLength(sliderValue) {
+    switch (sliderValue) {
+      case 1:
+        setStoryLength(250);
+        break;
+      case 2:
+        setStoryLength(300);
+        break;
+      case 3:
+        setStoryLength(350);
+        break;
+      case 4:
+        setStoryLength(450);
+        break;
+      case 5:
+        setStoryLength(550);
+        break;
+    }
+  }
 
   return (
     <div className="sliderContainer">
