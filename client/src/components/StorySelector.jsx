@@ -10,16 +10,22 @@ export default function StorySelector({
   setStorySelection,
   setGotRight,
   setGotWrong,
+  storyPrompt,
+  setStoryPrompt,
 }) {
-  const [storyPrompt, setStoryPrompt] = useState("");
-
+  // Finds a random value in the storyPrompt array and sets it in state (storyPrompt)
   const selectPrompt = () => {
     const randomIndex = Math.floor(Math.random() * storyPrompts.length);
     const prompt = storyPrompts[randomIndex];
-    console.log(prompt);
     setStoryPrompt(prompt);
   };
 
+  // Runs selectPrompt on page load to ensure there's a "default" prompt value
+  useEffect(() => {
+    selectPrompt();
+  }, []);
+
+  // Handles the button click to "try another" story prompt
   const handleButton = () => {
     selectPrompt();
   };

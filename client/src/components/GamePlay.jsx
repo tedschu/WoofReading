@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 function GamePlay({
   sliderValue,
-  storySelection,
   userScore,
   setUserScore,
   userInfo,
@@ -20,6 +19,7 @@ function GamePlay({
   modalBadge,
   setModalBadge,
   storyLength,
+  storyPrompt,
 }) {
   const [questionCount, setQuestionCount] = useState(1);
   const [userAnswer, setUserAnswer] = useState("");
@@ -32,6 +32,9 @@ function GamePlay({
   const [question3, setQuestion3] = useState("");
   const [triggerNewStory, setTriggerNewStory] = useState(false);
 
+  console.log(sliderValue);
+
+  // Function to hit generate_story endpoint (e.g. Anthropic API) to get a story based on values passed in
   const getStory = async (story_length, difficulty, story_topic) => {
     try {
       const queryParams = new URLSearchParams({
@@ -51,7 +54,7 @@ function GamePlay({
       }
 
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
 
       setTitle(data.Title);
       setStory(data.Story);
@@ -66,13 +69,15 @@ function GamePlay({
     }
   };
 
+  // Triggers the getStory function but only after all input values (slider, prompt, storylength) have been updated
   useEffect(() => {
     if (triggerNewStory) {
-      getStory(storyLength, sliderValue, storySelection);
+      getStory(storyLength, sliderValue, storyPrompt);
       setTriggerNewStory(false);
     }
-  }, [triggerNewStory, storyLength, sliderValue, storySelection]);
+  }, [triggerNewStory, storyLength, sliderValue, storyPrompt]);
 
+  // Handles button click "write story," setting TriggerNewStory = true which also triggers the useEffect above
   const handleClick = () => {
     setTriggerNewStory(true);
   };

@@ -21,13 +21,13 @@ function Game({
 }) {
   const [sliderValue, setSliderValue] = useState(1);
   const [storyLength, setStoryLength] = useState(250);
-  const [storySelection, setStorySelection] = useState("outer space");
   const [gotRight, setGotRight] = useState(false);
   const [gotWrong, setGotWrong] = useState(false);
 
   // state for modal that opens when a new badge is won
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalBadge, setModalBadge] = useState("");
+  const [storyPrompt, setStoryPrompt] = useState("");
 
   const navigate = useNavigate();
 
@@ -60,9 +60,10 @@ function Game({
         />
 
         <StorySelector
-          setStorySelection={setStorySelection}
           setGotRight={setGotRight}
           setGotWrong={setGotWrong}
+          storyPrompt={storyPrompt}
+          setStoryPrompt={setStoryPrompt}
         />
 
         <Slider
@@ -88,7 +89,8 @@ function Game({
           modalBadge={modalBadge}
           setModalBadge={setModalBadge}
           storyLength={storyLength}
-          storySelection={storySelection}
+          storyPrompt={storyPrompt}
+          sliderValue={sliderValue}
         />
 
         <BadgeModal

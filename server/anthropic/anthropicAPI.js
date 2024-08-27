@@ -54,7 +54,7 @@ router.get("/generate_story", async (req, res) => {
         content: [
           {
             type: "text",
-            text: `Generate a ${story_length}-word story with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the story. Return the result as a valid JSON object with the following structure: Title: [your title here], Story: [your story here], Question_1: [your question 1 here].`,
+            text: `Generate a ${story_length}-word story with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the story. Return the result as a valid JSON object with the following structure: {"Title": "your title here", "Story": "your story here", "Question_1": "your question 1 here", "Question_2": "your question 2 here", "Question_3": "your question 3 here"}. Ensure all text is properly escaped for JSON.`,
           },
         ],
       },
@@ -66,8 +66,15 @@ router.get("/generate_story", async (req, res) => {
     // Uses messages and system variables to call "callAnthropicAPI" function
     const response = await callAnthropicAPI(messages, system);
 
-    // Parse the response, replacing all \n breaks and "\" with empty strings, and convert it to readable JSON (storyData)
-    const cleanedResponse = response.replace(/\n/g, "").replace(/\\/g, "");
+    console.log("Raw API response: ", response);
+
+    // // Parse the response, replacing all \n breaks and "\" with empty strings, and convert it to readable JSON (storyData)
+    const cleanedResponse = response
+      // .replace(/\\'/g, "'") // Replace \' with just '
+      // .replace(/'/g, "\\'") // Then replace all ' with \'
+      // .replace(/\n/g, "\\n") // Replace newlines with \n
+      // .replace(/[\u0000-\u0019]+/g, "");
+      .replace(/[^\x20-\x7E]/g, "");
     const storyData = JSON.parse(cleanedResponse);
 
     // Sends back storyData JSON object with Title, Story, Question 1, Question 2, Question 3 keys.
@@ -77,23 +84,5 @@ router.get("/generate_story", async (req, res) => {
     res.status(500).json({ error: "Failed to generate story." });
   }
 });
-
-// // FUNCTION TO TEST THE API CALL:
-// callAnthropicAPI(
-//   [
-//     {
-//       role: "user",
-//       content: [
-//         {
-//           type: "text",
-//           text: `Generate a 300-word story with a difficulty level of 2 (out of 5) about the rain forest, followed by 3 questions about the story. Ensure that the block of questions is preceded by the line "Comprehension questions:`,
-//         },
-//       ],
-//     },
-//   ],
-//   "You are a reading tutor for students in grade school, and will be generating stories to test reading comprehension. All of the stories need to be age-appropriate, with no offensive language or themes."
-// )
-//   .then((result) => console.log("Test result:", result))
-//   .catch((error) => console.error("Test error:", error));
 
 module.exports = router;
