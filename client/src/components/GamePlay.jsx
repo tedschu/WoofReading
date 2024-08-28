@@ -26,6 +26,7 @@ function GamePlay({
   const [questionResult, setQuestionResult] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [triggerNewStory, setTriggerNewStory] = useState(false);
+  const [triggerNewEvaluation, setTriggerNewEvaluation] = useState(false);
   const [storyResponseData, setStoryResponseData] = useState({
     title: "",
     story: "",
@@ -99,7 +100,59 @@ function GamePlay({
   // Submit button that calls "evaluate_answers" function / API call
   const submit = (event) => {
     event.preventDefault();
-    //loginCheck(userInfo);  // NEEDS TO CALL FUNCTION TO EVALUATE ANSWERS
+    setTriggerNewEvaluation(true); // NEEDS TO CALL FUNCTION TO EVALUATE ANSWERS
+  };
+
+  // Triggers the evaluateAnswers function but only after all input values (storyResponseData) have been updated
+  useEffect(() => {
+    if (triggerNewEvaluation) {
+      evaluateAnswers(storyResponseData);
+      setTriggerNewEvaluation(false);
+    }
+  }, [triggerNewEvaluation, storyResponseData]);
+
+  // Function to hit evaluate_answers endpoint (e.g. Anthropic API) to get a story based on values passed in
+  const evaluateAnswers = async (storyResponseData) => {
+    try {
+      const response = await fetch("/anthropic/evaluate_answers", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          story: storyResponseData.story,
+          question_1: storyResponseData.question_1,
+          answer_1: storyResponseData.answer_1,
+          question_2: storyResponseData.question_2,
+          answer_2: storyResponseData.answer_2,
+          question_3: storyResponseData.question_3,
+          answer_3: storyResponseData.answer_3,
+        }),
+      });
+
+      if (!response.ok) {
+        const textResponse = await response.text();
+        console.error("Server response:", textResponse);
+        throw new Error("Failed to evalaute the answers");
+      }
+
+      const data = await response.json();
+      console.log(data);
+
+      // *** TODO: SETTERS FOR VALUES TO PASS BACK TO FRONTEND (RESPONSES / EVALS)
+      // setStoryResponseData({
+      //   title: data.Title,
+      //   story: data.Story,
+      //   question_1: data.Question_1,
+      //   question_2: data.Question_2,
+      //   question_3: data.Question_3,
+      // });
+
+      //return await response.json();
+    } catch (error) {
+      console.error("Error evaluating answers:", error);
+      throw error;
+    }
   };
 
   return (

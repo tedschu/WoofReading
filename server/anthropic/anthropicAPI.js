@@ -13,12 +13,6 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
 });
 
-// **** EACH (GET) TO GENERATE A STORY WILL INCLUDE:
-// (1) THE "TOPIC" FOR THE STORY PASSED FROM THE USER VIA THE BODY (E.G. DOGS, OUTER SPACE, ETC.)
-// (2) A "DIFFICULTY LEVEL" (1-5)
-// (3) A STORY LENGTH, BASED ON DIFFICULTY LEVEL (EX. FROM 250 - 700 WORDS)
-// ***** YOU MAY ALSO NEED TO PASS A RANDOM VARIABLE TO HELP ENSURE THAT STORIES ARE UNIQUE EACH TIME, AND/OR TO CHANGE THE TOPIC EACH TIME.
-
 // Function to establish connection to the Anthropic API
 async function callAnthropicAPI(messages, system = "") {
   try {
@@ -100,6 +94,102 @@ router.get("/generate_story", async (req, res) => {
   } catch (error) {
     console.error("Error generating story:", error);
     res.status(500).json({ error: "Failed to generate story." });
+  }
+});
+
+// Route to EVALUATE (POST) the user's answers
+router.post("/evaluate_answers", async (req, res) => {
+  try {
+    // Pulls in variables from the story and user input from the request body
+    const {
+      story,
+      question_1,
+      answer_1,
+      question_2,
+      answer_2,
+      question_3,
+      answer_3,
+    } = req.body;
+
+    // Error handling in case any fields are missing
+    if (
+      !story ||
+      !question_1 ||
+      !answer_1 ||
+      !question_2 ||
+      !answer_2 ||
+      !question_3 ||
+      !answer_3
+    ) {
+      return res.status(400).json({ error: "Missing required parameters" });
+    }
+
+    // Need to "stringify" (e.g. convert JSON object to a string) the storyData
+    const storyResponseData = JSON.stringify({
+      story: story,
+      question_1: question_1,
+      answer_1: answer_1,
+      question_2: question_2,
+      answer_2: answer_2,
+      question_3: question_3,
+      answer_3: answer_3,
+    });
+
+    // Building "messages" and "system" inputs below which are then passed to the API
+    const messages = [
+      {
+        role: "user",
+        content: [
+          {
+            type: "text",
+            text: `Using the JSON object below, review the answers to the three questions and evaluate whether the answers were correct. If the user has small spelling or punctuation errors, don't automatically evaluate as incorrect. Instead, provide feedback where applicable.
+
+            ${storyResponseData}
+            
+            Return the result as valid JSON with the following structure:
+            
+            {
+            "evaluations" = [
+            {
+              "Question": "First question",
+              "Answer": "First answer",
+              "is_correct": "true or false",
+              "feedback": "Return feedback on first answer if "is_correct" is false. Otherwise, return 'null'"
+            },
+          ...
+        ],
+            "overall_score": "0, 1, 2, or 3 based on the number of true values for is_correct"
+            }
+            
+            Important:
+            1. Ensure all JSON keys are in double quotes.
+            2. Do not use actual line breaks within the JSON string values. Use "\\n" for necessary line breaks.
+            3. Escape any double quotes within the text values with a backslash.
+            4. The entire JSON object should be on a single line, with no line breaks between properties.`,
+          },
+        ],
+      },
+    ];
+
+    const system =
+      "You are a reading tutor for students in grade school, and will be reviewing the user's answers to the provided questions and providing feedback. ";
+
+    // Uses messages and system variables to call "callAnthropicAPI" function
+    const response = await callAnthropicAPI(messages, system);
+
+    //console.log("Raw response:", response);
+
+    // // Parse the response, replacing all \n breaks and "\" with empty strings, and convert it to readable JSON (storyData)
+    const cleanedResponse = response.replace(/\\'/g, "'"); // Replace \' with just '
+    console.log(JSON.stringify(response));
+
+    const evaluationData = JSON.parse(cleanedResponse);
+
+    // Sends back evaluationData JSON object with the answers and evaluations (is_correct, feedback)
+    res.json(evaluationData);
+  } catch (error) {
+    console.error("Error evaluating data:", error);
+    res.status(500).json({ error: "Failed to evaluate answers." });
   }
 });
 
