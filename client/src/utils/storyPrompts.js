@@ -62,6 +62,7 @@ const storyPrompts = [
   "a snowy adventure",
   "a grumpy yet funny snowman",
   "the north pole",
+  "why the sky is blue",
   "",
 ];
 

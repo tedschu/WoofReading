@@ -54,7 +54,7 @@ function GamePlay({
       }
 
       const data = await response.json();
-      //console.log(data);
+      console.log(data.Story);
 
       setTitle(data.Title);
       setStory(data.Story);
