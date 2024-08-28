@@ -25,15 +25,19 @@ function GamePlay({
   const [userAnswer, setUserAnswer] = useState("");
   const [questionResult, setQuestionResult] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [title, setTitle] = useState("");
-  const [story, setStory] = useState("");
-  const [question1, setQuestion1] = useState("");
-  const [question2, setQuestion2] = useState("");
-  const [question3, setQuestion3] = useState("");
   const [triggerNewStory, setTriggerNewStory] = useState(false);
+  const [storyResponseData, setStoryResponseData] = useState({
+    title: "",
+    story: "",
+    question_1: "",
+    question_2: "",
+    question_3: "",
+    answer_1: "",
+    answer_2: "",
+    answer_3: "",
+  });
 
-  console.log(sliderValue);
-
+  // ***** STORY GENERATION *****
   // Function to hit generate_story endpoint (e.g. Anthropic API) to get a story based on values passed in
   const getStory = async (story_length, difficulty, story_topic) => {
     try {
@@ -54,13 +58,15 @@ function GamePlay({
       }
 
       const data = await response.json();
-      console.log(data.Story);
+      //console.log(data.Story);
 
-      setTitle(data.Title);
-      setStory(data.Story);
-      setQuestion1(data.Question_1);
-      setQuestion2(data.Question_2);
-      setQuestion3(data.Question_3);
+      setStoryResponseData({
+        title: data.Title,
+        story: data.Story,
+        question_1: data.Question_1,
+        question_2: data.Question_2,
+        question_3: data.Question_3,
+      });
 
       //return await response.json();
     } catch (error) {
@@ -82,17 +88,56 @@ function GamePlay({
     setTriggerNewStory(true);
   };
 
+  // ***** USER ANSWERS AND EVALUATION *****
+  // Handles user input values in "answer" boxes
+  const setFormValues = (event) => {
+    const newObj = { ...storyResponseData };
+    newObj[event.target.name] = event.target.value;
+    setStoryResponseData(newObj);
+  };
+
+  // Submit button that calls "evaluate_answers" function / API call
+  const submit = (event) => {
+    event.preventDefault();
+    //loginCheck(userInfo);  // NEEDS TO CALL FUNCTION TO EVALUATE ANSWERS
+  };
+
   return (
     <>
       <div className="storyContainer">
         <div className="storyContentContainer">
           <button onClick={handleClick}>Write story</button>
-          <h1>{title}</h1>
-          <p>{story}</p>
+          <h1>{storyResponseData.title}</h1>
+          <p className="preserve-linebreaks">{storyResponseData.story}</p>
           <br />
-          <p>Question 1: {question1}</p>
-          <p>Question 2: {question2}</p>
-          <p>Question 3: {question3}</p>
+
+          <form action="" className="loginForm" onSubmit={submit}>
+            <p>Question 1: {storyResponseData.question_1}</p>
+            <input
+              type="text"
+              placeholder="Your answer (1)..."
+              name="answer_1"
+              value={storyResponseData.answer_1}
+              onChange={setFormValues}
+            />
+            <p>Question 2: {storyResponseData.question_2}</p>
+            <input
+              type="text"
+              placeholder="Your answer (2)..."
+              name="answer_2"
+              value={storyResponseData.answer_2}
+              onChange={setFormValues}
+            />
+            <p>Question 3: {storyResponseData.question_3}</p>
+            <input
+              type="text"
+              placeholder="Your answer (3)..."
+              name="answer_3"
+              value={storyResponseData.answer_3}
+              onChange={setFormValues}
+            />
+            <button className="button login">SUBMIT</button>
+          </form>
         </div>
       </div>
     </>

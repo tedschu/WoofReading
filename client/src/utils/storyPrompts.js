@@ -63,7 +63,6 @@ const storyPrompts = [
   "a grumpy yet funny snowman",
   "the north pole",
   "why the sky is blue",
-  "",
 ];
 
 // Themes:

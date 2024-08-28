@@ -35,7 +35,7 @@ export default function StorySelector({
       <div className="gameSelectContainer">
         <h3>Let's do a story about:</h3>
         <h3>{storyPrompt}</h3>
-        <button onClick={handleButton}>Try another one</button>
+        <button onClick={handleButton}>Next</button>
       </div>
     </>
   );
