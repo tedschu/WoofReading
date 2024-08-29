@@ -98,6 +98,11 @@ function GamePlay({
   const handleClick = () => {
     setTriggerNewStory(true);
     setShowEvaluationChecks(false);
+    setStoryResponseData({
+      answer_1: "",
+      answer_2: "",
+      answer_3: "",
+    });
   };
 
   // ***** USER ANSWERS AND EVALUATION *****
@@ -160,13 +165,57 @@ function GamePlay({
         score: data.overall_score,
       });
 
-      console.log(evaluationData.is_correct_1);
       setShowEvaluationChecks(true);
+      calculateScore(data.overall_score);
 
       //return await response.json();
     } catch (error) {
       console.error("Error evaluating answers:", error);
       throw error;
+    }
+  };
+
+  // evaluationData comes in, state is updated.
+  // On useEffect to ensure updated:
+  // Pass "score" (0 - 3) to a function that returns an "addToScore" value (e.g. if passing in a 1, it outputs a 10)
+  // Calculate new score: in previous function, call a function passing addToScore that creates a temp variable updatedScore = addToScore + userScore
+  // Post updated score to DB: in previous function, call a function to post updatedScore (passed into it) to DB AND to update userScore state with new value.
+
+  function calculateScore(rawScore) {
+    let addToScore = rawScore * 10;
+    let updatedScore = addToScore + userScore.score;
+    postUserScore(updatedScore);
+    console.log(updatedScore);
+  }
+
+  // Function to pass the updated score to the database, update scores state values for gameplay
+  const postUserScore = async (updatedScore) => {
+    try {
+      // const updatedScores = getUpdatedScores(gameSelector, addToScore);
+      const storedToken = localStorage.getItem("token");
+
+      const response = await fetch(`/api/users/${userInfo.id}/score_reading`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${storedToken}`,
+        },
+        body: JSON.stringify({
+          score: updatedScore,
+        }),
+      });
+
+      const data = await response.json();
+
+      // SET ALL STATE VALUES HERE (SCORES, BADGES, USER INFO, ETC.)
+      if (response.ok) {
+        //setUserBadges(data.badge);
+        setUserScore({
+          score: updatedScore,
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
     }
   };
 

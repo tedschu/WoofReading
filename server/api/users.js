@@ -112,10 +112,10 @@ router.put("/:id", verifyToken, async (req, res) => {
   }
 });
 
-// UPdates a score for a given user (e.g. on submit button in gamePlay)
-router.put("/:user_id/score", verifyToken, async (req, res) => {
+// UPdates a score_reading for a given user (e.g. on submit button in gamePlay)
+router.put("/:user_id/score_reading", verifyToken, async (req, res) => {
   try {
-    const score = await prisma.score.update({
+    const score = await prisma.score_reading.update({
       where: {
         user_id: parseInt(req.user),
       },
@@ -129,9 +129,9 @@ router.put("/:user_id/score", verifyToken, async (req, res) => {
 });
 
 // UPdates a badge for a given user (e.g. on submit button in gamePlay)
-router.put("/:user_id/badge", verifyToken, async (req, res) => {
+router.put("/:user_id/badge_reading", verifyToken, async (req, res) => {
   try {
-    const badge = await prisma.badge.update({
+    const badge = await prisma.badge_reading.update({
       where: {
         user_id: parseInt(req.user),
       },
