@@ -520,7 +520,7 @@ nav {
 }
 
 /* GAME SELECTION and SLIDER STYLING */
-.gameSelectContainer {
+.storySelectContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -529,14 +529,35 @@ nav {
   gap: 5px;
 }
 
-.gameSelectButtons {
+.storyPromptContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.storyPrompt {
+  padding: 10px;
+  border: 2px solid #a6d5ea;
+  border-radius: 10px;
+  display: flex;
+}
+
+.nextIcon {
+  color: white;
+  background-color: #7dc2e0;
+  border-radius: 7px;
+  padding: 4px;
+  margin-left: 15px;
+}
+
+.storySelectButtons {
   display: flex;
   width: 70%;
   justify-content: space-around;
   padding: 10px;
 }
 
-.gameSelectButtons > button {
+.storySelectButtons > button {
   border: none;
   width: 100px;
   height: 26px;

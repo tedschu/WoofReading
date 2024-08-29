@@ -159,7 +159,7 @@ function GamePlay({
     <>
       <div className="storyContainer">
         <div className="storyContentContainer">
-          <button onClick={handleClick}>Write story</button>
+          <button onClick={handleClick}>Get the story</button>
           <h1>{storyResponseData.title}</h1>
           <p className="preserve-linebreaks">{storyResponseData.story}</p>
           <br />

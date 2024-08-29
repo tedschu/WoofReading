@@ -2,8 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import storyPrompts from "../utils/storyPrompts";
 
 export default function StorySelector({
@@ -32,10 +31,14 @@ export default function StorySelector({
 
   return (
     <>
-      <div className="gameSelectContainer">
-        <h3>Let's do a story about:</h3>
-        <h3>{storyPrompt}</h3>
-        <button onClick={handleButton}>Next</button>
+      <div className="storySelectContainer">
+        <h3>Let's pick a story:</h3>
+        <div className="storyPromptContainer">
+          <div className="storyPrompt">
+            <h3>{storyPrompt}</h3>
+            <ArrowForwardIosIcon className="nextIcon" onClick={handleButton} />
+          </div>
+        </div>
       </div>
     </>
   );
