@@ -158,8 +158,8 @@ router.post("/evaluate_answers", async (req, res) => {
             {
               "Question": "First question",
               "Answer": "First answer",
-              "is_correct": "true or false",
-              "feedback": "Return feedback on first answer if "is_correct" is false. Otherwise, return 'null'"
+              "is_correct": true or false (boolean),
+              "feedback": "Return feedback on first answer if "is_correct" is false. Focus your feedback on the correct answer, and do not tell the user to try again. Otherwise, return 'null'"
             },
           ...
         ],
@@ -197,37 +197,5 @@ router.post("/evaluate_answers", async (req, res) => {
     res.status(500).json({ error: "Failed to evaluate answers." });
   }
 });
-
-// PROMPT TEXT FOR EVALUATION FUNCTION:
-// Using the JSON object below, review the answers to the three questions and evaluate whether the answers were correct. If the user has small spelling or punctuation errors, don't automatically evaluate as incorrect. Instead, provide feedback where applicable.
-
-// {
-//   "Story": "Pumpkin Spice was no ordinary singer. With her unique voice and infectious stage presence, she had captivated audiences everywhere. Her debut album, \"Autumn\'s Melody,\" had been an instant hit, propelling her to the forefront of the music scene.\\n\\nAs Pumpkin Spice\'s popularity grew, so did the demand for her performances. She found herself touring the country, performing sold-out shows in cities big and small. Wherever she went, her fans eagerly awaited the chance to see her live, entranced by her ability to blend her soulful vocals with the warmth of the season.\\n\\nBut Pumpkin Spice never forgot her roots. She remained humble and grounded, often using her platform to raise awareness for local charities and community initiatives. Her dedication to her craft and her desire to make a difference in the world only added to her appeal, cementing her status as a true icon of the music industry.",
-//   "Question_1": "What was the title of Pumpkin Spice's debut album?",
-//   "Answer_1": "Autums melody",
-//   "Question_2": "Where did Pumpkin Spice perform her shows?",
-//   "Answer_2": "big cities and towns",
-//   "Question_3": "How did Pumpkin Spice use her platform to make a difference?",
-//   "Answer_3": "helped local charities"
-// }
-
-// Return the result as valid JSON with the following structure:
-
-// {
-// "evaluations" = [
-// {
-//   "Question": "First question",
-//   "Answer": "First answer",
-//   "is_correct": "true or false",
-//   "feedback": "Return feedback on first answer if "is_correct" is false. Otherwise, return 'null'"
-// }]
-// "overall_score": "0, 1, 2, or 3 based on the number of true values for is_correct"
-// }
-
-// Important:
-// 1. Ensure all JSON keys are in double quotes.
-// 2. Do not use actual line breaks within the JSON string values. Use "\\n" for necessary line breaks.
-// 3. Escape any double quotes within the text values with a backslash.
-// 4. The entire JSON object should be on a single line, with no line breaks between properties.
 
 module.exports = router;

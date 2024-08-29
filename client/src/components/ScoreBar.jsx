@@ -18,8 +18,6 @@ function ScoreBar({
   sliderValue,
   gameSelector,
   userInfo,
-  totalScore,
-  setTotalScore,
 }) {
   return (
     <>
