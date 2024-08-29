@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import TipsAndUpdatesIcon from "@mui/icons-material/TipsAndUpdates";
+import { buttonBaseClasses } from "@mui/material";
+import storyPrompts from "../utils/storyPrompts";
 
 function GamePlay({
   sliderValue,
@@ -20,6 +22,7 @@ function GamePlay({
   setModalBadge,
   storyLength,
   storyPrompt,
+  setStoryPrompt,
 }) {
   const [questionCount, setQuestionCount] = useState(1);
   const [userAnswer, setUserAnswer] = useState("");
@@ -47,6 +50,7 @@ function GamePlay({
     score: "",
   });
   const [showEvaluationChecks, setShowEvaluationChecks] = useState(false);
+  const [pointsWon, setPointsWon] = useState(0);
 
   // ***** STORY GENERATION *****
   // Function to hit generate_story endpoint (e.g. Anthropic API) to get a story based on values passed in
@@ -103,6 +107,7 @@ function GamePlay({
       answer_2: "",
       answer_3: "",
     });
+    setGotWrong(false);
   };
 
   // ***** USER ANSWERS AND EVALUATION *****
@@ -167,6 +172,11 @@ function GamePlay({
 
       setShowEvaluationChecks(true);
       calculateScore(data.overall_score);
+      if (data.overall_score > 0) {
+        setGotRight(true);
+      } else if (data.overall_score == 0) {
+        setGotWrong(true);
+      }
 
       //return await response.json();
     } catch (error) {
@@ -185,7 +195,7 @@ function GamePlay({
     let addToScore = rawScore * 10;
     let updatedScore = addToScore + userScore.score;
     postUserScore(updatedScore);
-    console.log(updatedScore);
+    setPointsWon(addToScore);
   }
 
   // Function to pass the updated score to the database, update scores state values for gameplay
@@ -217,6 +227,28 @@ function GamePlay({
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
+  };
+
+  // Controls alert when question was right. Visible for 3 seconds.
+  useEffect(() => {
+    let timer;
+    if (gotRight) {
+      timer = setTimeout(() => {
+        setGotRight(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [gotRight]);
+
+  // Finds a random value in the storyPrompt array and sets it in state (storyPrompt)
+  const selectPrompt = () => {
+    const randomIndex = Math.floor(Math.random() * storyPrompts.length);
+    const prompt = storyPrompts[randomIndex];
+    setStoryPrompt(prompt);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // for smooth scrolling
+    });
   };
 
   return (
@@ -307,6 +339,19 @@ function GamePlay({
             )}
             <button className="button login">SUBMIT</button>
           </form>
+          {gotRight && (
+            <div className="rightAnswerAlert">
+              <h4>Yay! You got it right! That's +{pointsWon} points!</h4>
+            </div>
+          )}
+          {gotWrong && (
+            <div className="wrongAnswerAlert">
+              <h4>Good effort. Keep trying!</h4>
+            </div>
+          )}
+          {showEvaluationChecks && (
+            <button onClick={selectPrompt}>Try another story!</button>
+          )}
         </div>
       </div>
     </>

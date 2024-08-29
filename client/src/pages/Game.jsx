@@ -91,6 +91,7 @@ function Game({
           storyLength={storyLength}
           storyPrompt={storyPrompt}
           sliderValue={sliderValue}
+          setStoryPrompt={setStoryPrompt}
         />
 
         <BadgeModal

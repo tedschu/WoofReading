@@ -40,6 +40,30 @@ function App() {
 
   const navigate = useNavigate();
 
+  // Runs on page load to check for an expired token. If token is expired, clears out localstorage and redirects to login screen.
+  useEffect(() => {
+    isTokenExpired(storedToken);
+  }, []);
+
+  function isTokenExpired(token) {
+    try {
+      const payloadBase64 = token.split(".")[1];
+      const decodedJson = atob(payloadBase64);
+      const decoded = JSON.parse(decodedJson);
+      const exp = decoded.exp;
+
+      // Check if the expiration time is past
+      if (Date.now() >= exp * 1000) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("userId");
+        setIsLoggedIn(false);
+        navigate("/welcome");
+      }
+    } catch (error) {
+      console.error("Error checking token expiration:", error);
+    }
+  }
+
   // Verifies that a user is loggedIn (checks for token)
   // IF token exists: update setters (isLoggedIn, badges, userscore, userId)
   // IF token doesn't exist, navigate to /login
