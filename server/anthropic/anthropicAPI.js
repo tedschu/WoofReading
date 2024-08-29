@@ -63,7 +63,8 @@ router.get("/generate_story", async (req, res) => {
             2. The "Story" value should be a single string with paragraphs separated by "\\n\\n" (two backslashes followed by two 'n's).
             3. Do not use actual line breaks within the JSON string values. Use "\\n" for necessary line breaks.
             4. Escape any double quotes within the text values with a backslash.
-            5. The entire JSON object should be on a single line, with no line breaks between properties.`,
+            5. Use a single backslash () to escape apostrophes and quotation marks.
+            6. The entire JSON object should be on a single line, with no line breaks between properties.`,
           },
         ],
       },
@@ -75,19 +76,23 @@ router.get("/generate_story", async (req, res) => {
     // Uses messages and system variables to call "callAnthropicAPI" function
     const response = await callAnthropicAPI(messages, system);
 
-    //console.log("Raw response:", response);
+    console.log("Raw response:", response);
 
     // // Parse the response, replacing all \n breaks and "\" with empty strings, and convert it to readable JSON (storyData)
     const cleanedResponse = response
       // .replace(/(?<!\\)\n/g, "\\\\n");
+      .replace(/\\\'/g, "'") // Replace \' with just '
       .replace(/\\'/g, "'"); // Replace \' with just '
     // .replace(/'/g, "\\'") // Then replace all ' with \'
     // .replace(/\n/g, "\\n") // Replace newlines with \n
     // .replace(/[\u0000-\u0019]+/g, "");
     // .replace(/[^\x20-\x7E]/g, "");
-    console.log(JSON.stringify(response));
+
+    console.log("Cleaned response:", cleanedResponse);
 
     const storyData = JSON.parse(cleanedResponse);
+
+    console.log("parsed response:", storyData);
 
     // Sends back storyData JSON object with Title, Story, Question 1, Question 2, Question 3 keys.
     res.json(storyData);
