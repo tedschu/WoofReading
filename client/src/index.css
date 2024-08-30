@@ -134,7 +134,7 @@ button {
 }
 
 .button.StoryGenerate {
-  /* width: 200px; */
+  width: 180px;
   border-radius: 10px;
   background-image: linear-gradient(#d4492b, #ff8b71);
   /* background-color: #7dc2e0; */
@@ -145,6 +145,7 @@ button {
   display: flex;
   align-items: center;
   gap: 5px;
+  text-align: center;
 }
 
 .button.recover:hover {
@@ -614,6 +615,12 @@ nav {
 
 .storyContentContainer > h1 {
   margin-bottom: 10px;
+}
+
+.getStoryContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .answerInputBox {

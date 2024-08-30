@@ -85,6 +85,9 @@ const storyPrompts = [
   "abraham lincoln",
   "flying an airplane through the night sky",
   "a super short yet awesome basketball player",
+  "the olympics",
+  "magic at the movies",
+  "a poem about monster trucks",
 ];
 
 // Themes:

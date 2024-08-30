@@ -6,7 +6,7 @@ import { buttonBaseClasses } from "@mui/material";
 import storyPrompts from "../utils/storyPrompts";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import CircularColor from "./CircularColor";
-import Popper from "@mui/material/Popper";
+import PositionedPopper from "./PositionedPopper";
 
 function GamePlay({
   sliderValue,
@@ -370,10 +370,13 @@ function GamePlay({
   return (
     <>
       <div className="storyContainer">
-        <button onClick={handleClick} className="button StoryGenerate">
-          GET THE STORY <AutoAwesomeIcon fontSize="small" />
-        </button>
-
+        <div className="getStoryContainer">
+          <div className="blank"></div>
+          <button onClick={handleClick} className="button StoryGenerate">
+            GET THE STORY
+          </button>{" "}
+          <PositionedPopper />
+        </div>
         <div className="storyContentContainer">
           {circularProgress && <CircularColor />}
           <h1 className="gamePlayHeaders">{storyResponseData.title}</h1>
