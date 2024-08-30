@@ -6,6 +6,7 @@ import boxer from "../assets/boxer.png";
 import husky from "../assets/husky.png";
 import golden from "../assets/golden.png";
 import cat from "../assets/cat.png";
+import waterdog from "../assets/waterdog.png";
 import goldendoodleTrophy from "../assets/goldendoodle_trophy_large.png";
 
 function BadgeModal({ isModalOpen, closeModal, modalBadge }) {
@@ -22,6 +23,9 @@ function BadgeModal({ isModalOpen, closeModal, modalBadge }) {
       break;
     case "chihuahua":
       badgeImage = chihuahua;
+      break;
+    case "Water Dog":
+      badgeImage = waterdog;
       break;
     case "boxer":
       badgeImage = boxer;

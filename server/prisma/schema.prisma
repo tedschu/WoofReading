@@ -79,6 +79,7 @@ model Badge_reading {
   chihuahua Boolean? @default(false)
   golden Boolean? @default(false)
   husky Boolean? @default(false)
+  waterdog Boolean? @default(false)
   goldendoodle_trophy Boolean? @default(false)
   user User @relation(fields: [user_id], references: [id])
   user_id Int @unique

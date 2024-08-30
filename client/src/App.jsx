@@ -34,6 +34,7 @@ function App() {
     chihuahua: false,
     golden: false,
     husky: false,
+    waterdog: false,
     goldendoodle_trophy: false,
   });
   const [token, setToken] = useState(storedToken || "");

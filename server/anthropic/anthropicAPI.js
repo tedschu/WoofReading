@@ -64,7 +64,8 @@ router.get("/generate_story", async (req, res) => {
             3. Do not use actual line breaks within the JSON string values. Use "\\n" for necessary line breaks.
             4. Escape any double quotes within the text values with a backslash.
             5. Use a single backslash () to escape apostrophes and quotation marks.
-            6. The entire JSON object should be on a single line, with no line breaks between properties.`,
+            6. The entire JSON object should be on a single line, with no line breaks between properties.
+            7. If the difficulty level is 1, you should use simple words. As the difficulty number increases (to 5), you can use more complex words.`,
           },
         ],
       },
@@ -127,7 +128,9 @@ router.post("/evaluate_answers", async (req, res) => {
       !question_3 ||
       !answer_3
     ) {
-      return res.status(400).json({ error: "Missing required parameters" });
+      return res
+        .status(400)
+        .json({ error: "Make sure you're answering all the questions" });
     }
 
     // Need to "stringify" (e.g. convert JSON object to a string) the storyData

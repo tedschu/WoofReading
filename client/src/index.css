@@ -133,6 +133,20 @@ button {
   box-shadow: 2px 2px 6px #c1c1c1;
 }
 
+.button.StoryGenerate {
+  /* width: 200px; */
+  border-radius: 10px;
+  background-image: linear-gradient(#d4492b, #ff8b71);
+  /* background-color: #7dc2e0; */
+  color: white;
+  font-size: 20px;
+  border: none;
+  box-shadow: 2px 2px 6px #828282;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .button.recover:hover {
   background: darkgray;
 }
@@ -415,24 +429,6 @@ nav {
   color: gray;
 }
 
-.scoresContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px 0px;
-  gap: 5px;
-
-  /* grid-template-columns: [first] 50% [line2] 50%; */
-}
-
-.totalScores {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: end;
-  /* border: 1px solid #7dc2e0; */
-}
-
 .totalScore {
   display: flex;
   flex-direction: column;
@@ -445,9 +441,9 @@ nav {
   color: #d4492b;
   border: 1px solid lightgray;
   border-radius: 8px;
-  font-size: 45px;
-  padding: 0px 12px;
-  margin: 0px 5px;
+  font-size: 60px;
+  padding: 0px 15px;
+  margin: 0px 10px;
 }
 
 .subScoreContainer {
@@ -477,9 +473,22 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   padding: 10px 0;
-  gap: 2px;
+  margin-top: 2px;
+}
+
+.badgesSubContainer {
+  display: flex;
+  padding: 0px 5px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.badgesSubContainer2 {
+  display: flex;
+  gap: 5px;
 }
 
 .badgeEnabled {
@@ -516,7 +525,7 @@ nav {
 }
 
 .eachBadge > img {
-  width: 49px;
+  width: 55px;
 }
 
 /* GAME SELECTION and SLIDER STYLING */
@@ -569,7 +578,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px 0 15px 0;
+  padding: 10px 0 5px 0;
 }
 
 .sliderBox {
@@ -595,6 +604,8 @@ nav {
   border-radius: 10px;
   padding: 10px;
   box-shadow: 2px 2px 10px lightgray;
+  margin-top: 20px;
+  min-height: 200px;
 }
 
 .storyContentContainer > h1 {
@@ -1176,7 +1187,7 @@ ul li {
 /* SCREEN IS ABOVE 550px (e.g. tablet) */
 @media screen and (min-width: 550px) {
   .eachBadge > img {
-    width: 70px;
+    width: 57px;
   }
 
   .storyContentContainer {
@@ -1213,17 +1224,14 @@ ul li {
   }
 }
 
-/* SCREEN IS ABOVE 1050px (desktop) */
-@media screen and (min-width: 1050px) {
-  .scoreBarContainer {
-    /* background: rgb(237, 237, 237); */
-    display: grid;
-    grid-template-columns: [first] 50% [line2] 50%;
-    border-bottom: 1px solid rgb(232, 232, 232);
-  }
-
+/* SCREEN IS ABOVE 900px (desktop) */
+@media screen and (min-width: 900px) {
   .scoresContainer {
     gap: 2px;
+  }
+
+  .eachBadge > img {
+    width: 70px;
   }
 
   .badgesContainer {
