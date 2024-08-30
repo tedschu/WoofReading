@@ -6,6 +6,7 @@ import { buttonBaseClasses } from "@mui/material";
 import storyPrompts from "../utils/storyPrompts";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import CircularColor from "./CircularColor";
+import Popper from "@mui/material/Popper";
 
 function GamePlay({
   sliderValue,
@@ -56,6 +57,7 @@ function GamePlay({
   const [circularProgress, setCircularProgress] = useState(false);
   const [circularProgressSubmit, setCircularProgressSubmit] = useState(false);
   const [errorText, setErrorText] = useState("");
+  const [pointsToWin, setPointsToWin] = useState("");
 
   // ***** STORY GENERATION *****
   // Function to hit generate_story endpoint (e.g. Anthropic API) to get a story based on values passed in
@@ -203,21 +205,33 @@ function GamePlay({
   // evaluationData comes in, state is updated.
   function calculateScore(rawScore) {
     let addToScore;
+    let points;
     switch (sliderValue) {
       case 1:
-        addToScore = rawScore * 5;
+        points = 5;
+        addToScore = rawScore * points;
+        console.log(addToScore);
+        setPointsToWin(points);
         break;
       case 2:
-        addToScore = rawScore * 7;
+        points = 7;
+        addToScore = rawScore * points;
+        setPointsToWin(points);
         break;
       case 3:
-        addToScore = rawScore * 10;
+        points = 10;
+        addToScore = rawScore * points;
+        setPointsToWin(points);
         break;
       case 4:
-        addToScore = rawScore * 12;
+        points = 12;
+        addToScore = rawScore * points;
+        setPointsToWin(points);
         break;
       case 5:
-        addToScore = rawScore * 15;
+        points = 15;
+        addToScore = rawScore * points;
+        setPointsToWin(points);
         break;
     }
     let updatedScore = addToScore + userScore.score;
@@ -362,90 +376,96 @@ function GamePlay({
 
         <div className="storyContentContainer">
           {circularProgress && <CircularColor />}
-          <h1>{storyResponseData.title}</h1>
+          <h1 className="gamePlayHeaders">{storyResponseData.title}</h1>
           <p className="preserve-linebreaks">{storyResponseData.story}</p>
           <br />
 
           {storyResponseData.story && (
-            <form action="" className="answerForm" onSubmit={submit}>
-              <p>Question 1: {storyResponseData.question_1}</p>
-              <div className="answerInputBox">
-                <div className="empty"></div>
-                <input
-                  type="text"
-                  placeholder="Your answer (1)..."
-                  name="answer_1"
-                  value={storyResponseData.answer_1}
-                  onChange={setFormValues}
-                />
+            <>
+              <h3 className="gamePlayHeaders">
+                {/* Answer these for up to {pointsToWin} points: */}
+                Answer these to win points & badges:
+              </h3>
+              <form action="" className="answerForm" onSubmit={submit}>
+                <p>{storyResponseData.question_1}</p>
+                <div className="answerInputBox">
+                  <div className="empty"></div>
+                  <input
+                    type="text"
+                    placeholder="Your answer..."
+                    name="answer_1"
+                    value={storyResponseData.answer_1}
+                    onChange={setFormValues}
+                  />
+                  {showEvaluationChecks && (
+                    <div className="rightWrongIcon">
+                      {evaluationData.is_correct_1 ? (
+                        <CheckCircleIcon className="checkIcon" />
+                      ) : (
+                        <TipsAndUpdatesIcon className="bulbIcon" />
+                      )}
+                    </div>
+                  )}
+                </div>
                 {showEvaluationChecks && (
-                  <div className="rightWrongIcon">
-                    {evaluationData.is_correct_1 ? (
-                      <CheckCircleIcon className="checkIcon" />
-                    ) : (
-                      <TipsAndUpdatesIcon className="bulbIcon" />
-                    )}
+                  <div className="feedback">
+                    {!evaluationData.is_correct_1 && evaluationData.feedback_1}
                   </div>
                 )}
-              </div>
-              {showEvaluationChecks && (
-                <div className="feedback">
-                  {!evaluationData.is_correct_1 && evaluationData.feedback_1}
+                <p>{storyResponseData.question_2}</p>
+                <div className="answerInputBox">
+                  <div className="empty"></div>
+                  <input
+                    type="text"
+                    placeholder="Your answer..."
+                    name="answer_2"
+                    value={storyResponseData.answer_2}
+                    onChange={setFormValues}
+                  />
+                  {showEvaluationChecks && (
+                    <div className="rightWrongIcon">
+                      {evaluationData.is_correct_2 ? (
+                        <CheckCircleIcon className="checkIcon" />
+                      ) : (
+                        <TipsAndUpdatesIcon className="bulbIcon" />
+                      )}
+                    </div>
+                  )}
                 </div>
-              )}
-              <p>Question 2: {storyResponseData.question_2}</p>
-              <div className="answerInputBox">
-                <div className="empty"></div>
-                <input
-                  type="text"
-                  placeholder="Your answer (2)..."
-                  name="answer_2"
-                  value={storyResponseData.answer_2}
-                  onChange={setFormValues}
-                />
                 {showEvaluationChecks && (
-                  <div className="rightWrongIcon">
-                    {evaluationData.is_correct_2 ? (
-                      <CheckCircleIcon className="checkIcon" />
-                    ) : (
-                      <TipsAndUpdatesIcon className="bulbIcon" />
-                    )}
+                  <div className="feedback">
+                    {!evaluationData.is_correct_2 && evaluationData.feedback_2}
                   </div>
                 )}
-              </div>
-              {showEvaluationChecks && (
-                <div className="feedback">
-                  {!evaluationData.is_correct_2 && evaluationData.feedback_2}
+                <p>{storyResponseData.question_3}</p>
+                <div className="answerInputBox">
+                  <div className="empty"></div>
+                  <input
+                    type="text"
+                    placeholder="Your answer..."
+                    name="answer_3"
+                    value={storyResponseData.answer_3}
+                    onChange={setFormValues}
+                  />
+                  {showEvaluationChecks && (
+                    <div className="rightWrongIcon">
+                      {evaluationData.is_correct_3 ? (
+                        <CheckCircleIcon className="checkIcon" />
+                      ) : (
+                        <TipsAndUpdatesIcon className="bulbIcon" />
+                      )}
+                    </div>
+                  )}
                 </div>
-              )}
-              <p>Question 3: {storyResponseData.question_3}</p>
-              <div className="answerInputBox">
-                <div className="empty"></div>
-                <input
-                  type="text"
-                  placeholder="Your answer (3)..."
-                  name="answer_3"
-                  value={storyResponseData.answer_3}
-                  onChange={setFormValues}
-                />
                 {showEvaluationChecks && (
-                  <div className="rightWrongIcon">
-                    {evaluationData.is_correct_3 ? (
-                      <CheckCircleIcon className="checkIcon" />
-                    ) : (
-                      <TipsAndUpdatesIcon className="bulbIcon" />
-                    )}
+                  <div className="feedback">
+                    {!evaluationData.is_correct_3 && evaluationData.feedback_3}
                   </div>
                 )}
-              </div>
-              {showEvaluationChecks && (
-                <div className="feedback">
-                  {!evaluationData.is_correct_3 && evaluationData.feedback_3}
-                </div>
-              )}
-              {circularProgressSubmit && <CircularColor />}
-              <button className="button login">SUBMIT</button>
-            </form>
+                {circularProgressSubmit && <CircularColor />}
+                <button className="button login">SUBMIT</button>
+              </form>
+            </>
           )}
           {gotRight && (
             <div className="rightAnswerAlert">

@@ -573,6 +573,10 @@ nav {
   border-radius: 4px;
 }
 
+.gamePlayHeaders {
+  color: #0085bd;
+}
+
 .sliderContainer {
   display: flex;
   flex-direction: column;
@@ -591,7 +595,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 10px 10px 40px 10px;
 }
 
 .storyContentContainer {
@@ -614,14 +618,16 @@ nav {
 
 .answerInputBox {
   display: grid;
-  grid-template-columns: [first] 50px [line2] 250px [line3] 50px;
+  grid-template-columns: [first] 15% [line2] 70% [line3] 15%;
   align-items: center;
   justify-content: center;
   width: 350px;
+  margin: 3px 0px 8px 0px;
 }
 .answerInputBox > input {
   height: 50px;
-  width: 250px;
+  max-width: 250px;
+  min-width: 220px;
   padding: 8px;
   border: 1px solid lightgray;
   border-radius: 6px;
@@ -637,12 +643,12 @@ nav {
 
 .checkIcon {
   color: green;
-  margin-left: 5px;
+  /* margin-left: 5px; */
 }
 
 .bulbIcon {
   color: rgb(249, 200, 86);
-  margin-left: 5px;
+  /* margin-left: 5px; */
 }
 
 .answerForm {
@@ -650,8 +656,9 @@ nav {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-bottom: 15px;
+  margin: 3px 0px 10px 0px;
   text-align: center;
+  padding: 5px;
 }
 
 .gamePlay > form {
@@ -1241,6 +1248,7 @@ ul li {
   .storyContentContainer {
     width: 80%;
     padding: 10px 45px;
+    max-width: 1000px;
   }
 
   .individualScores {
