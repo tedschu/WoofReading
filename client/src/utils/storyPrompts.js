@@ -87,7 +87,7 @@ const storyPrompts = [
   "a super short yet awesome basketball player",
   "the olympics",
   "magic at the movies",
-  "a poem about monster trucks",
+  "monster trucks",
 ];
 
 // Themes:

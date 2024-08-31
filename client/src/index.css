@@ -68,7 +68,7 @@ p {
 /* BUTTON STYLING */
 
 button {
-  padding: 10px 20px;
+  padding: 5px 5px;
   font-size: 18px;
   border: 1px solid lightgray;
   border-radius: 6px;
@@ -134,7 +134,7 @@ button {
 }
 
 .button.StoryGenerate {
-  width: 180px;
+  /* width: 180px; */
   border-radius: 10px;
   background-image: linear-gradient(#d4492b, #ff8b71);
   /* background-color: #7dc2e0; */
@@ -144,8 +144,13 @@ button {
   box-shadow: 2px 2px 6px #828282;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
-  text-align: center;
+  padding: 8px 12px;
+}
+
+.button.StoryGenerate:hover {
+  background: #cb4527;
 }
 
 .button.recover:hover {
@@ -550,6 +555,11 @@ nav {
   border: 2px solid #a6d5ea;
   border-radius: 10px;
   display: flex;
+}
+
+.custom-select option {
+  font-family: "Patrick Hand";
+  color: red;
 }
 
 .nextIcon {

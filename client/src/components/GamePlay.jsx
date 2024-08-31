@@ -7,6 +7,7 @@ import storyPrompts from "../utils/storyPrompts";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import CircularColor from "./CircularColor";
 import PositionedPopper from "./PositionedPopper";
+import AutoStoriesIcon from "@mui/icons-material/AutoStories";
 
 function GamePlay({
   sliderValue,
@@ -26,6 +27,7 @@ function GamePlay({
   storyLength,
   storyPrompt,
   setStoryPrompt,
+  storyType,
 }) {
   const [questionCount, setQuestionCount] = useState(1);
   const [userAnswer, setUserAnswer] = useState("");
@@ -61,12 +63,18 @@ function GamePlay({
 
   // ***** STORY GENERATION *****
   // Function to hit generate_story endpoint (e.g. Anthropic API) to get a story based on values passed in
-  const getStory = async (story_length, difficulty, story_topic) => {
+  const getStory = async (
+    story_length,
+    difficulty,
+    story_topic,
+    story_type
+  ) => {
     try {
       const queryParams = new URLSearchParams({
         story_length: story_length,
         difficulty: difficulty,
         story_topic: story_topic,
+        story_type: story_type,
       });
 
       const response = await fetch(
@@ -101,10 +109,10 @@ function GamePlay({
   // Triggers the getStory function but only after all input values (slider, prompt, storylength) have been updated
   useEffect(() => {
     if (triggerNewStory) {
-      getStory(storyLength, sliderValue, storyPrompt);
+      getStory(storyLength, sliderValue, storyPrompt, storyType);
       setTriggerNewStory(false);
     }
-  }, [triggerNewStory, storyLength, sliderValue, storyPrompt]);
+  }, [triggerNewStory, storyLength, sliderValue, storyPrompt, storyType]);
 
   // Handles button click "write story," setting TriggerNewStory = true which also triggers the useEffect above
   const handleClick = () => {
@@ -370,13 +378,9 @@ function GamePlay({
   return (
     <>
       <div className="storyContainer">
-        <div className="getStoryContainer">
-          <div className="blank"></div>
-          <button onClick={handleClick} className="button StoryGenerate">
-            GET THE STORY
-          </button>{" "}
-          <PositionedPopper />
-        </div>
+        <button onClick={handleClick} className="button StoryGenerate">
+          FETCH THE STORY <AutoAwesomeIcon style={{ fontSize: "22px" }} />
+        </button>
         <div className="storyContentContainer">
           {circularProgress && <CircularColor />}
           <h1 className="gamePlayHeaders">{storyResponseData.title}</h1>
@@ -481,10 +485,13 @@ function GamePlay({
             </div>
           )}
           {showEvaluationChecks && (
-            <button onClick={selectPrompt}>Try another story!</button>
+            <button className="button signup welcome" onClick={selectPrompt}>
+              Try another story!
+            </button>
           )}
           {errorText && <h3 style={{ color: "red" }}>{errorText}</h3>}
         </div>
+        Woof Reading uses Ai ....
       </div>
     </>
   );

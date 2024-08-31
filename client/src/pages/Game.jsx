@@ -20,6 +20,7 @@ function Game({
   setTotalScore,
 }) {
   const [sliderValue, setSliderValue] = useState(1);
+  const [storyType, setStoryType] = useState("story");
   const [storyLength, setStoryLength] = useState(250);
   const [gotRight, setGotRight] = useState(false);
   const [gotWrong, setGotWrong] = useState(false);
@@ -64,6 +65,8 @@ function Game({
           setGotWrong={setGotWrong}
           storyPrompt={storyPrompt}
           setStoryPrompt={setStoryPrompt}
+          storyType={storyType}
+          setStoryType={setStoryType}
         />
 
         <Slider
@@ -92,6 +95,8 @@ function Game({
           storyPrompt={storyPrompt}
           sliderValue={sliderValue}
           setStoryPrompt={setStoryPrompt}
+          storyType={storyType}
+          setStoryType={setStoryType}
         />
 
         <BadgeModal

@@ -11,6 +11,8 @@ export default function StorySelector({
   setGotWrong,
   storyPrompt,
   setStoryPrompt,
+  setStoryType,
+  storyType,
 }) {
   // Finds a random value in the storyPrompt array and sets it in state (storyPrompt)
   const selectPrompt = () => {
@@ -29,11 +31,32 @@ export default function StorySelector({
     selectPrompt();
   };
 
+  // Handles the drop-down selector for story type
+  const handleChange = (event) => {
+    setStoryType(event.target.value);
+  };
+
   return (
     <>
       <div className="storySelectContainer">
-        <h3>Let's pick a story:</h3>
+        <h3>Let's pick a</h3>
         <div className="storyPromptContainer">
+          <div>
+            <form className="storyPrompt">
+              <select
+                name="dropdown"
+                id="dropdown"
+                value={storyType}
+                onChange={handleChange}
+                className="custom-select"
+                style={{ border: "none" }}
+              >
+                <option value="story">Story</option>
+                <option value="poem">Poem</option>
+                <option value="ballad">Ballad</option>
+              </select>
+            </form>
+          </div>
           <div className="storyPrompt">
             <h3>{storyPrompt}</h3>
             <ArrowForwardIosIcon className="nextIcon" onClick={handleButton} />

@@ -37,8 +37,9 @@ router.get("/generate_story", async (req, res) => {
     const story_length = req.query.story_length;
     const difficulty = req.query.difficulty;
     const story_topic = req.query.story_topic;
+    const story_type = req.query.story_type;
 
-    if (!story_length || !difficulty || !story_topic) {
+    if (!story_length || !difficulty || !story_topic || !story_type) {
       return res.status(400).json({ error: "Missing required parameters" });
     }
 
@@ -48,11 +49,11 @@ router.get("/generate_story", async (req, res) => {
         content: [
           {
             type: "text",
-            text: `Generate a ${story_length}-word story with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the story. Return the result as a valid JSON object with the following structure:
+            text: `Generate a ${story_length}-word ${story_type} with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the ${story_type}. Return the result as a valid JSON object with the following structure:
 
             {
-              "Title": "Your story title",
-              "Story": "Your multi-paragraph story",
+              "Title": "Your ${story_type} title",
+              "Story": "Your ${story_type}",
               "Question_1": "First question",
               "Question_2": "Second question",
               "Question_3": "Third question"
@@ -71,8 +72,7 @@ router.get("/generate_story", async (req, res) => {
       },
     ];
 
-    const system =
-      "You are a reading tutor for students in grade school, and will be generating stories to test reading comprehension. All of the stories need to be age-appropriate, with no offensive language or themes.";
+    const system = `You are a reading tutor for students in grade school, and will be generating a ${story_type}to test reading comprehension. Everything needs to be age-appropriate, with no offensive language or themes. Keep the language relatively simple, avoiding complex words.`;
 
     // Uses messages and system variables to call "callAnthropicAPI" function
     const response = await callAnthropicAPI(messages, system);
