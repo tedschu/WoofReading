@@ -555,11 +555,19 @@ nav {
   border: 2px solid #a6d5ea;
   border-radius: 10px;
   display: flex;
+  color: #d4492b;
 }
 
-.custom-select option {
-  font-family: "Patrick Hand";
-  color: red;
+.storyPrompt > select {
+  color: #d4492b;
+}
+
+.custom-select:focus {
+  outline: none;
+}
+
+.storyPrompt-separator {
+  margin: 5px 8px;
 }
 
 .nextIcon {

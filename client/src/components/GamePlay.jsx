@@ -37,7 +37,7 @@ function GamePlay({
   const [triggerNewEvaluation, setTriggerNewEvaluation] = useState(false);
   const [storyResponseData, setStoryResponseData] = useState({
     title: "",
-    story: "",
+    body: "",
     question_1: "",
     question_2: "",
     question_3: "",
@@ -92,7 +92,7 @@ function GamePlay({
       setCircularProgress(false);
       setStoryResponseData({
         title: data.Title,
-        story: data.Story,
+        body: data.Body,
         question_1: data.Question_1,
         question_2: data.Question_2,
         question_3: data.Question_3,
@@ -161,7 +161,7 @@ function GamePlay({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          story: storyResponseData.story,
+          story: storyResponseData.body,
           question_1: storyResponseData.question_1,
           answer_1: storyResponseData.answer_1,
           question_2: storyResponseData.question_2,
@@ -384,10 +384,10 @@ function GamePlay({
         <div className="storyContentContainer">
           {circularProgress && <CircularColor />}
           <h1 className="gamePlayHeaders">{storyResponseData.title}</h1>
-          <p className="preserve-linebreaks">{storyResponseData.story}</p>
+          <p className="preserve-linebreaks">{storyResponseData.body}</p>
           <br />
 
-          {storyResponseData.story && (
+          {storyResponseData.body && (
             <>
               <h3 className="gamePlayHeaders">
                 {/* Answer these for up to {pointsToWin} points: */}

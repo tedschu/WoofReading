@@ -53,7 +53,7 @@ router.get("/generate_story", async (req, res) => {
 
             {
               "Title": "Your ${story_type} title",
-              "Story": "Your ${story_type}",
+              "Body": "Your ${story_type}",
               "Question_1": "First question",
               "Question_2": "Second question",
               "Question_3": "Third question"
@@ -61,7 +61,7 @@ router.get("/generate_story", async (req, res) => {
             
             Important:
             1. Ensure all JSON keys are in double quotes.
-            2. The "Story" value should be a single string with paragraphs separated by "\\n\\n" (two backslashes followed by two 'n's).
+            2. The "Body" value should be a single string with paragraphs separated by "\\n\\n" (two backslashes followed by two 'n's).
             3. Do not use actual line breaks within the JSON string values. Use "\\n" for necessary line breaks.
             4. Escape any double quotes within the text values with a backslash.
             5. Use a single backslash () to escape apostrophes and quotation marks.

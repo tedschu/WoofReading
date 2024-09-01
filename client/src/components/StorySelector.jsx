@@ -47,8 +47,8 @@ export default function StorySelector({
                 name="dropdown"
                 id="dropdown"
                 value={storyType}
-                onChange={handleChange}
                 className="custom-select"
+                onChange={handleChange}
                 style={{ border: "none" }}
               >
                 <option value="story">Story</option>
@@ -57,6 +57,8 @@ export default function StorySelector({
               </select>
             </form>
           </div>
+          <h3 className="storyPrompt-separator">about</h3>
+
           <div className="storyPrompt">
             <h3>{storyPrompt}</h3>
             <ArrowForwardIosIcon className="nextIcon" onClick={handleButton} />
