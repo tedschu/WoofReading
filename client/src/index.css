@@ -541,6 +541,7 @@ nav {
   justify-content: center;
   align-items: center;
   padding: 20px 0 10px 0;
+  margin: 0px 4px;
   gap: 5px;
 }
 
@@ -555,6 +556,8 @@ nav {
   border: 2px solid #a6d5ea;
   border-radius: 10px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   color: #d4492b;
 }
 
@@ -774,6 +777,19 @@ nav {
 .answerSubmit {
   display: flex;
   justify-content: center;
+}
+
+.ai-disclaimer {
+  font-size: 16px;
+  margin: 15px 0px;
+  color: darkgray;
+  text-align: center;
+}
+
+.ai-link {
+  font-style: italic;
+  color: inherit;
+  font-size: inherit;
 }
 
 /* Remove arrows for Chrome, Safari, Edge, Opera */
@@ -1099,7 +1115,7 @@ p {
   width: 100%;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(#cb4527, #e38c3a);
+  background-image: linear-gradient(#04628a, #7dc2e0);
   padding: 10px;
   margin-bottom: 40px;
 }

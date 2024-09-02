@@ -198,7 +198,10 @@ router.post("/evaluate_answers", async (req, res) => {
     res.json(evaluationData);
   } catch (error) {
     console.error("Error evaluating data:", error);
-    res.status(500).json({ error: "Failed to evaluate answers." });
+    res.status(500).json({
+      error: "Failed to evaluate answers.",
+      rawResponse: error.response,
+    });
   }
 });
 

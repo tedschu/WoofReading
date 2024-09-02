@@ -27,13 +27,29 @@ function About({ isLoggedIn }) {
 
         <div className="aboutContentContainer">
           <h2>The backstory</h2>
-          <p>...</p>
+          <p>
+            As with{" "}
+            <Link style={{ color: "inherit" }} to={"woofmath.com/about"}>
+              Woof Math
+            </Link>
+            , this project was inspired by
+          </p>
 
           <p>Ted Schuster</p>
           <p>Founder and developer, Woof Learning</p>
           <p>Built in Illinois</p>
           <p>WoofLearning@gmail.com</p>
         </div>
+
+        <div className="aboutContentContainer">
+          <h2>
+            Woof Reading uses AI (artificial intelligence) to generate stories
+          </h2>
+          <p>What? </p>
+          <p>Why? </p>
+          <p>How? </p>
+        </div>
+
         <div className="aboutContentContainer">
           <h2>Privacy policy</h2>
           <p>

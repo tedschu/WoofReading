@@ -8,6 +8,8 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import CircularColor from "./CircularColor";
 import PositionedPopper from "./PositionedPopper";
 import AutoStoriesIcon from "@mui/icons-material/AutoStories";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function GamePlay({
   sliderValue,
@@ -401,6 +403,7 @@ function GamePlay({
                     type="text"
                     placeholder="Your answer..."
                     name="answer_1"
+                    autoComplete="off"
                     value={storyResponseData.answer_1}
                     onChange={setFormValues}
                   />
@@ -426,6 +429,7 @@ function GamePlay({
                     type="text"
                     placeholder="Your answer..."
                     name="answer_2"
+                    autoComplete="off"
                     value={storyResponseData.answer_2}
                     onChange={setFormValues}
                   />
@@ -451,6 +455,7 @@ function GamePlay({
                     type="text"
                     placeholder="Your answer..."
                     name="answer_3"
+                    autoComplete="off"
                     value={storyResponseData.answer_3}
                     onChange={setFormValues}
                   />
@@ -491,7 +496,17 @@ function GamePlay({
           )}
           {errorText && <h3 style={{ color: "red" }}>{errorText}</h3>}
         </div>
-        Woof Reading uses Ai ....
+        <p className="ai-disclaimer">
+          {" "}
+          <AutoAwesomeIcon
+            style={{ fontSize: "16px", color: "#d4492b" }}
+          />{" "}
+          Woof Reading uses AI to build these stories. Learn more{" "}
+          <Link to={"/About"} className="ai-link">
+            here
+          </Link>
+          .
+        </p>
       </div>
     </>
   );
