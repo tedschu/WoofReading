@@ -2,6 +2,7 @@ import React from "react";
 
 import woofMathLogo from "../assets/woofmath_logo_1.png";
 import { Link } from "react-router-dom";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 
 function About({ isLoggedIn }) {
   return (
@@ -32,7 +33,32 @@ function About({ isLoggedIn }) {
             <Link style={{ color: "inherit" }} to={"woofmath.com/about"}>
               Woof Math
             </Link>
-            , this project was inspired by
+            , this project was inspired both by my kids as well as a personal
+            desire to make simple, fun games online to help practice reading and
+            math that actually focus on, well...reading and math. One of the
+            helpful tools we've used over the years, particularly in the summer
+            months, are reading comprehension workbooks. The kids will read a
+            passage and then answer a few questions or solve a puzzle
+            afterwards. Woof Reading is intended to emulate that experience, but
+            to make it also a bit more fun by allowing them to choose a topic
+            and a type of story, whether that be a short story, poem, or ballad.
+            They can, of course, also win animal badges as they answer questions
+            correctly and score points. So that's pretty cool, too.
+          </p>
+          <p>
+            Finally, I saw this type of app as a good use of artificial
+            intelligence (AI) tools such as Claude (see detail below). I say
+            this both for me as a developer in building this app, but also for
+            kids, who, in using Woof Reading, can get a curated, basic
+            understanding of some of the interesting and beneficial uses of this
+            technology. You may have questions or concerns about these tools,
+            and I am with you there! Please see the section below for more
+            details on how these tools are used and the safeguards in place.
+          </p>
+          <p>
+            Finally, please do feel free to contact us with any additional
+            questions or feedback you may have in order to make this a better,
+            more productive place to practice reading. Thank you!
           </p>
 
           <p>Ted Schuster</p>
@@ -43,11 +69,72 @@ function About({ isLoggedIn }) {
 
         <div className="aboutContentContainer">
           <h2>
-            Woof Reading uses AI (artificial intelligence) to generate stories
+            Woof Reading uses AI (artificial intelligence) to generate stories{" "}
+            <AutoAwesomeIcon style={{ fontSize: "22px" }} />
           </h2>
-          <p>What? </p>
-          <p>Why? </p>
-          <p>How? </p>
+          <p>
+            Woof Reading uses an AI assistant called{" "}
+            <Link className="promptsLinks" to={"claude.ai"}>
+              Claude
+            </Link>{" "}
+            from Anthropic to (1) generate story ideas and questions about those
+            stories, and (2) to evaluate the answers to those questions. The
+            "evaluations" do not just say "right" or "wrong," but also provide
+            contextual feedback to help the reader's understanding.
+          </p>
+          <p>
+            <h3>Why are you using AI?</h3> This technology is particularly good
+            at taking prompts - for example, "write a poem about my dog Charlie"
+            - and then "writing" stories that are legible, interesting, and if
+            you're asking about real-world information ("write a story about
+            Abraham Lincoln"), also correct in the vast majority of cases. Most
+            relevantly, we're using AI as the basis for Woof Reading because the
+            technology makes it possible. Tools such as Claude are particularly
+            strong at "synthesizing" or making sense of information and
+            providing feedback that is easy to understand.
+          </p>
+          <p>
+            Woof Reading is NOT intended to replace live instruction, or reading
+            with a parent or tutor - it is simply a way to supplement and
+            hopefully strengthen these efforts. It is also NOT intended to
+            replace the beauty and originality of storytelling. The stories that
+            Claude creates are fun (and sometimes witty), but are meant to be
+            rather straightforward. The idea here is not to produce profound
+            literature, but to simply help with reading comprehension.
+          </p>
+          <h3>What are you doing to make this app safe to use?</h3>
+          <p>
+            AI tools are very "intelligent," but are very much guided by what a
+            user asks them to do. Woof Reading, for this reason, relies on two
+            simple inputs to the Claude system: (1) the type of content to
+            create (ex. "poem," "story"), and (2) a fixed set of prompts (story
+            ideas) that we have selected, and which a user can choose in the
+            app. So for instance, during the game, you may ask Woof Reading to
+            write a "poem" about "space travel." You can{" "}
+            <Link className="promptsLinks" to={"/prompts"}>
+              see all of the pre-set prompts for Woof reading here
+            </Link>
+            . Put simply, we set the type of stories that can be created so that
+            all topics are safe and, ideally, interesting.
+          </p>
+          <p>
+            Anthropic (the maker of Claude) also details their user safety
+            approach{" "}
+            <Link
+              className="promptsLinks"
+              to={
+                "https://support.anthropic.com/en/articles/8106465-our-approach-to-user-safety"
+              }
+            >
+              here
+            </Link>
+            .
+          </p>
+          <p>
+            If you have any feedback on the prompts, or further questions on the
+            use of AI in Woof Reading, please contact us at
+            WoofLearning@gmail.com.
+          </p>
         </div>
 
         <div className="aboutContentContainer">
@@ -60,7 +147,8 @@ function About({ isLoggedIn }) {
           <p>
             Woof Reading does ask for a reasonable amount of personal
             information during the sign up (account creation) process, which is
-            detailed below, in order to operate the Woof Reading game.
+            detailed below, in order to operate the Woof Reading game. Note that
+            none of this data is shared with Anthropic ("Claude").
           </p>
           <p>
             You may both review all information that you've shared with Woof

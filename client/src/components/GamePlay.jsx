@@ -475,11 +475,24 @@ function GamePlay({
                   </div>
                 )}
                 {circularProgressSubmit && <CircularColor />}
+                {gotRight && (
+                  <div className="rightAnswerAlert">
+                    <h4>
+                      Yay! You got {evaluationData.score} correct, for +
+                      {pointsWon} points!
+                    </h4>
+                  </div>
+                )}
+                {gotWrong && (
+                  <div className="wrongAnswerAlert">
+                    <h4>Good effort. Keep trying!</h4>
+                  </div>
+                )}
                 <button className="button login">SUBMIT</button>
               </form>
             </>
           )}
-          {gotRight && (
+          {/* {gotRight && (
             <div className="rightAnswerAlert">
               <h4>Yay! You got it right! That's +{pointsWon} points!</h4>
             </div>
@@ -488,7 +501,7 @@ function GamePlay({
             <div className="wrongAnswerAlert">
               <h4>Good effort. Keep trying!</h4>
             </div>
-          )}
+          )} */}
           {showEvaluationChecks && (
             <button className="button signup welcome" onClick={selectPrompt}>
               Try another story!

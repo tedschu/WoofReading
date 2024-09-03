@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Welcome from "./pages/Welcome";
 import About from "./pages/About";
+import Prompts from "./pages/Prompts";
 
 function App() {
   const storedToken = localStorage.getItem("token");
@@ -174,6 +175,7 @@ function App() {
         />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/about" element={<About isLoggedIn={isLoggedIn} />} />
+        <Route path="/prompts" element={<Prompts isLoggedIn={isLoggedIn} />} />
       </Routes>
     </>
   );

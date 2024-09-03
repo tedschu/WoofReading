@@ -83,6 +83,11 @@ router.post("/register", async (req, res) => {
             bernese: false,
           },
         },
+        user: {
+          create: {
+            has_WoofReading: true,
+          },
+        },
       },
     });
 
@@ -120,10 +125,16 @@ router.post("/login", async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    //checks if the user exists
+    //checks if the user exists and if has access to Woof Reading
     const userMatch = await prisma.user.findUnique({
       where: {
         username: username,
+      },
+      select: {
+        id: true,
+        username: true,
+        password: true,
+        has_WoofReading: true,
       },
     });
 
@@ -133,6 +144,10 @@ router.post("/login", async (req, res) => {
       const passMatch = await bcrypt.compare(password, userMatch.password);
       if (!passMatch) {
         res.status(401).send({ message: "Invalid login credentials" });
+      } else if (!userMatch.has_WoofReading) {
+        res
+          .status(403)
+          .send({ message: "You don't have access to Woof Reading." });
       } else {
         const updateUserStats = await prisma.user.update({
           where: { username: username },

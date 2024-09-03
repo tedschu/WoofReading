@@ -549,6 +549,8 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
 }
 
 .storyPrompt {
@@ -567,10 +569,6 @@ nav {
 
 .custom-select:focus {
   outline: none;
-}
-
-.storyPrompt-separator {
-  margin: 5px 8px;
 }
 
 .nextIcon {
@@ -649,7 +647,7 @@ nav {
   grid-template-columns: [first] 15% [line2] 70% [line3] 15%;
   align-items: center;
   justify-content: center;
-  width: 350px;
+  width: 330px;
   margin: 3px 0px 8px 0px;
 }
 .answerInputBox > input {
@@ -686,6 +684,7 @@ nav {
   justify-content: center;
   margin: 3px 0px 10px 0px;
   text-align: center;
+  flex-wrap: wrap;
   padding: 5px;
 }
 
@@ -772,6 +771,10 @@ nav {
   background-color: rgb(255, 215, 215);
   border: 1px solid rgb(232, 232, 232);
   border-radius: 6px;
+}
+
+.rightWrongIcon {
+  width: 40px;
 }
 
 .answerSubmit {
@@ -1139,6 +1142,9 @@ p {
   margin: 20px 0px;
   padding: 30px;
 }
+.aboutContentContainer h3 {
+  color: #0085bd;
+}
 
 .aboutContentContainer p {
   padding: 10px;
@@ -1155,6 +1161,20 @@ ul li {
 
 .bold {
   font-weight: bolder;
+}
+
+.promptsContentContainer {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.promptsContentContainer > li {
+  font-size: 18px;
+}
+
+.promptsLinks {
+  color: black;
+  font-size: 20px;
 }
 
 /* BADGE MODAL STYLING */

@@ -45,7 +45,6 @@ const storyPrompts = [
   "bears hibernating for winter",
   "why dogs sleep so much",
   "a puppy named Roar",
-  "a cat that thought she was a dog",
   "a magic bike",
   "a boy wizard",
   "an adventurous wizard named Jenna",

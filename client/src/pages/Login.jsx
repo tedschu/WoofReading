@@ -10,6 +10,7 @@ function Login({ setIsLoggedIn, isLoggedIn, userInfo, setUserInfo }) {
   const [loginFailed, setLoginFailed] = useState(false);
   const [isRecoverModalOpen, setIsRecoverModalOpen] = useState(false);
   const [isResetPassModalOpen, setIsResetPassModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const openRecoverModal = () => setIsRecoverModalOpen(true);
   const closeRecoverModal = () => setIsRecoverModalOpen(false);
@@ -54,8 +55,9 @@ function Login({ setIsLoggedIn, isLoggedIn, userInfo, setUserInfo }) {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error("Login failed");
+        setErrorMessage(data.message);
         setLoginFailed(true);
+        throw new Error("Login failed");
       } else {
         localStorage.setItem("token", data.token); // SETS TOKEN TO LOCALSTORAGE IN BROWSER
         localStorage.setItem("userId", data.id); // SETS USER ID INTO LOCALSTORAGE TO HELP WITH RENDERING USER DATA ON GAME AND ACCOUNT PAGES
@@ -104,7 +106,8 @@ function Login({ setIsLoggedIn, isLoggedIn, userInfo, setUserInfo }) {
           </form>
           {loginFailed && (
             <>
-              <h4>Oops. There was a problem with your login.</h4>
+              <h4>Oops. There was a problem with your login:</h4>
+              <h4>{errorMessage}</h4>
               <div className="recoverButtonContainer">
                 <button className="button recover" onClick={openRecoverModal}>
                   Find my username
