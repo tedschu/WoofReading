@@ -95,7 +95,7 @@ button {
 }
 
 .button.signup {
-  width: 200px;
+  width: 220px;
   background: transparent;
   border-radius: 10px;
   color: white;
@@ -785,7 +785,7 @@ nav {
 .ai-disclaimer {
   font-size: 16px;
   margin: 15px 0px;
-  color: darkgray;
+  color: rgb(126, 126, 126);
   text-align: center;
 }
 

@@ -24,15 +24,18 @@ function Welcome() {
           </div>
 
           <div className="welcomeContentContainer">
-            <h1>Woof Reading</h1>
-            <p>Test</p>
+            <h1>Woof Reading (beta)</h1>
+            <p>
+              Do some fun reading and win awesome dog badges along the way. The
+              more reading you do, the more badges you get!
+            </p>
 
             <div className="welcomeButtonContainer">
               <Link to={"/login"}>
                 <button className="button login">LOGIN</button>
               </Link>
               <Link to={"/register"}>
-                <button className="button signup">SIGN UP</button>
+                <button className="button signup">REQUEST AN INVITE</button>
               </Link>
             </div>
           </div>
@@ -45,13 +48,32 @@ function Welcome() {
         <div className="welcomeAboutContainer">
           <div className="welcomeSubContainerTop">
             <div className="welcomeAboutContent">
-              <h2>Woof Reading ...</h2>
-              <p>...</p>
+              <h2>Woof Reading is all about understanding stories.</h2>
+              <p>
+                It's a simple game: you "choose your adventure" with the type of
+                story (or poem) you'd like to read, and then win points and
+                badges by answering a few questions that show how well you know
+                the story. The stories are sometimes a bit silly, sometimes
+                based on true events...but always good for kids.
+              </p>
 
               <br />
               <h2>It's made for kids. </h2>
               <p>
-                Woof ...{" "}
+                Woof Reading is meant to be supportive and flexible for learners
+                that are just getting started on reading, all the way through
+                more advanced readers in grade school. The topics are fun, and
+                the game play is all about building skills and providing
+                feedback when you could use a bit more help. At the moment, Woof
+                Reading is in beta with invite-only access, but it shares the
+                same principles of user and data safety as we do with{" "}
+                <Link
+                  style={{ color: "black", fontSize: "20px" }}
+                  to={"http://woofmath.com"}
+                >
+                  Woof Math
+                </Link>
+                . See{" "}
                 <Link to={"/About"} className="welcomePrivacyNotice">
                   our privacy policy.
                 </Link>
