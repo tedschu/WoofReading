@@ -9,17 +9,7 @@ import badge_cat from "../assets/badges/badge_cat.png";
 import badge_goldendoodle_trophy from "../assets/badges/goldendoodle_trophy_color.png";
 import badge_waterdog from "../assets/badges/waterdog.png";
 
-function ScoreBar({
-  isLoggedIn,
-  loginForm,
-  userScore,
-  setUserScore,
-  userBadges,
-  setUserBadges,
-  sliderValue,
-  gameSelector,
-  userInfo,
-}) {
+function ScoreBar({ userScore, userBadges }) {
   return (
     <>
       <div className="scoreBarContainer">

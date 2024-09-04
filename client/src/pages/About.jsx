@@ -30,35 +30,41 @@ function About({ isLoggedIn }) {
           <h2>The backstory</h2>
           <p>
             As with{" "}
-            <Link style={{ color: "inherit" }} to={"woofmath.com/about"}>
+            <Link style={{ color: "inherit" }} to={"http://woofmath.com/about"}>
               Woof Math
             </Link>
             , this project was inspired both by my kids as well as a personal
             desire to make simple, fun games online to help practice reading and
             math that actually focus on, well...reading and math. One of the
-            helpful tools we've used over the years, particularly in the summer
-            months, are reading comprehension workbooks. The kids will read a
-            passage and then answer a few questions or solve a puzzle
-            afterwards. Woof Reading is intended to emulate that experience, but
-            to make it also a bit more fun by allowing them to choose a topic
-            and a type of story, whether that be a short story, poem, or ballad.
-            They can, of course, also win animal badges as they answer questions
-            correctly and score points. So that's pretty cool, too.
+            helpful tools we've used as a family over the years, particularly in
+            the summer months, are reading comprehension workbooks. The kids
+            will read a passage and then answer a few questions or solve a
+            puzzle afterwards. Woof Reading is intended to emulate that
+            experience, but to make it also a bit more fun by allowing them to
+            choose a topic and a type of story, whether that be a short story,
+            poem, or ballad. They can, of course, also win animal badges as they
+            answer questions correctly and score points. So that's pretty cool,
+            too.
           </p>
           <p>
-            Finally, I saw this type of app as a good use of artificial
-            intelligence (AI) tools such as Claude (see detail below). I say
-            this both for me as a developer in building this app, but also for
-            kids, who, in using Woof Reading, can get a curated, basic
-            understanding of some of the interesting and beneficial uses of this
-            technology. You may have questions or concerns about these tools,
-            and I am with you there! Please see the section below for more
-            details on how these tools are used and the safeguards in place.
+            Finally, I thought that some of the recent advances in AI platforms
+            would be particularly suited for helping kids with their reading. As
+            a developer, I was curious to see how the technology would handle
+            this use case: would it be clunky, awkward, or completely unusable?
+            As a dad, I was very intent on building something with strict
+            parameters so that I could be confident that it was safe. After
+            trying it out, it was clear that it would work. Another minor upside
+            to all of this is that kids, in using Woof Reading, can get a
+            curated, basic understanding of some of the interesting and
+            beneficial uses of this booming technology.
           </p>
           <p>
-            Finally, please do feel free to contact us with any additional
-            questions or feedback you may have in order to make this a better,
-            more productive place to practice reading. Thank you!
+            You may have questions or concerns about these tools, many of which
+            I had as well. Please see the section below for more details on how
+            these tools are used and the safeguards in place. Please do feel
+            free to contact us with any additional questions or feedback you may
+            have in order to make this a better, more productive place to
+            practice reading. Thank you!
           </p>
 
           <p>Ted Schuster</p>
@@ -82,25 +88,25 @@ function About({ isLoggedIn }) {
             "evaluations" do not just say "right" or "wrong," but also provide
             contextual feedback to help the reader's understanding.
           </p>
+          <h3>Why are you using AI?</h3>
           <p>
-            <h3>Why are you using AI?</h3> This technology is particularly good
-            at taking prompts - for example, "write a poem about my dog Charlie"
-            - and then "writing" stories that are legible, interesting, and if
-            you're asking about real-world information ("write a story about
-            Abraham Lincoln"), also correct in the vast majority of cases. Most
-            relevantly, we're using AI as the basis for Woof Reading because the
-            technology makes it possible. Tools such as Claude are particularly
-            strong at "synthesizing" or making sense of information and
-            providing feedback that is easy to understand.
+            This technology is particularly good at taking prompts - for
+            example, "write a poem about my dog Charlie" - and then constructing
+            stories that are legible, interesting - and if you're asking about
+            real-world information ("write a story about Abraham Lincoln") -
+            also reliably accurate. Most relevantly, we're using AI as the basis
+            for Woof Reading because the technology makes it possible: tools
+            such as Claude are particularly strong at making sense of
+            information and providing feedback that is easy to understand.
           </p>
           <p>
             Woof Reading is NOT intended to replace live instruction, or reading
             with a parent or tutor - it is simply a way to supplement and
             hopefully strengthen these efforts. It is also NOT intended to
-            replace the beauty and originality of storytelling. The stories that
-            Claude creates are fun (and sometimes witty), but are meant to be
-            rather straightforward. The idea here is not to produce profound
-            literature, but to simply help with reading comprehension.
+            replace the beauty and originality of books and storytelling. The
+            stories that Claude creates are fun (and sometimes witty), but are
+            meant to be rather straightforward. The idea here is not to produce
+            profound literature, but to simply help with reading comprehension.
           </p>
           <h3>What are you doing to make this app safe to use?</h3>
           <p>

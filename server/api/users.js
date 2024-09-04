@@ -28,7 +28,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// WORKS: Gets a single user
+// Gets a single user
 // validate and find user info
 router.get("/me", verifyToken, async (req, res) => {
   try {
@@ -112,7 +112,7 @@ router.put("/:id", verifyToken, async (req, res) => {
   }
 });
 
-// UPdates a score_reading for a given user (e.g. on submit button in gamePlay)
+// Updates a score_reading for a given user (e.g. on submit button in gamePlay)
 router.put("/:user_id/score_reading", verifyToken, async (req, res) => {
   try {
     const score = await prisma.score_reading.update({

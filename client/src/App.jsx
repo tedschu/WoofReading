@@ -24,7 +24,6 @@ function App() {
     security_question_2: "",
     security_answer_2: "",
   });
-  // *********** UPDATE WITH VALUES FROM DB TABLE
   const [userScore, setUserScore] = useState({
     score: 0,
   });
@@ -118,13 +117,8 @@ function App() {
     }
   }, [isLoggedIn]); // SET TO ISLOGGEDIN TO ENSURE RELOAD POST LOGIN AND REGISTRATION
 
-  // console.log("This is userBadges:", userBadges);
-  // console.log("This is userScore:", userScore);
-
   return (
     <>
-      {/* <Nav isLoggedIn={isLoggedIn} userInfo={userInfo} /> */}
-
       <Routes>
         <Route
           index

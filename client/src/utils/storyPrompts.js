@@ -87,6 +87,10 @@ const storyPrompts = [
   "the olympics",
   "magic at the movies",
   "monster trucks",
+  "why flowers are colorful",
+  "a trip to pluto",
+  "the great wall of china",
+  "the grand canyon",
 ];
 
 // Themes:

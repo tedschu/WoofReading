@@ -18,7 +18,6 @@ function Me({
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
-    // window.location.reload();
     setIsLoggedIn(false);
     navigate("/welcome");
   };
@@ -77,9 +76,7 @@ function Me({
             <h2>
               Welcome, {userInfo.username}! Here's what you've shared with us:
             </h2>
-            {/* <li>
-              Name: <span className="accountFont">{userInfo.name}</span>
-            </li> */}
+
             <li>
               Email: <span className="accountFont">{userInfo.email}</span>
             </li>

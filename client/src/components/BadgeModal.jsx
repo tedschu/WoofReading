@@ -12,9 +12,6 @@ import goldendoodleTrophy from "../assets/goldendoodle_trophy_large.png";
 function BadgeModal({ isModalOpen, closeModal, modalBadge }) {
   if (!isModalOpen) return null;
 
-  // const [returnedUsers, setReturnedUsers] = useState([]);
-  // const [noUsers, setNoUsers] = useState(false);
-
   let badgeImage = null;
 
   switch (modalBadge) {

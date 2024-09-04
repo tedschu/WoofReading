@@ -1,4 +1,3 @@
-//import Anthropic from "@anthropic-ai/sdk";
 const express = require("express");
 const router = express.Router();
 const Anthropic = require("@anthropic-ai/sdk");
@@ -18,8 +17,8 @@ async function callAnthropicAPI(messages, system = "") {
   try {
     const response = await anthropic.messages.create({
       model: "claude-3-haiku-20240307",
-      max_tokens: 1000,
-      temperature: 0.9,
+      max_tokens: 1200,
+      temperature: 0.7,
       system: system,
       messages: messages,
     });
@@ -33,7 +32,6 @@ async function callAnthropicAPI(messages, system = "") {
 // Route to generate (GET) a new story based on user selection of story topic
 router.get("/generate_story", async (req, res) => {
   try {
-    // ******** TODO: Need to pass these from user inputs in frontend
     const story_length = req.query.story_length;
     const difficulty = req.query.difficulty;
     const story_topic = req.query.story_topic;
@@ -49,7 +47,7 @@ router.get("/generate_story", async (req, res) => {
         content: [
           {
             type: "text",
-            text: `Generate a ${story_length}-word ${story_type} with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the ${story_type}. Return the result as a valid JSON object with the following structure:
+            text: `Generate approximately a ${story_length}-word ${story_type} with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the ${story_type}. Return the result as a valid JSON object with the following structure:
 
             {
               "Title": "Your ${story_type} title",
@@ -66,20 +64,21 @@ router.get("/generate_story", async (req, res) => {
             4. Escape any double quotes within the text values with a backslash.
             5. Use a single backslash () to escape apostrophes and quotation marks.
             6. The entire JSON object should be on a single line, with no line breaks between properties.
-            7. If the difficulty level is 1, you should use simple words. As the difficulty number increases (to 5), you can use more complex words.`,
+            7. If the difficulty level is 1, you should use simple words that are easy to read and understand for children. As the difficulty number increases (to 5), you can use more complex words.
+            8. Try to keep the story length at around the word count specified.`,
           },
         ],
       },
     ];
 
-    const system = `You are a reading tutor for students in grade school, and will be generating a ${story_type}to test reading comprehension. Everything needs to be age-appropriate, with no offensive language or themes. Keep the language relatively simple, avoiding complex words.`;
+    const system = `You are a reading tutor for students in grade school, and will be generating a ${story_type} to test reading comprehension. Everything needs to be age-appropriate, with no offensive language or themes.`;
 
     // Uses messages and system variables to call "callAnthropicAPI" function
     const response = await callAnthropicAPI(messages, system);
 
     console.log("Raw response:", response);
 
-    // // Parse the response, replacing all \n breaks and "\" with empty strings, and convert it to readable JSON (storyData)
+    // Parse the response, replacing all \n breaks and "\" with empty strings, and convert it to readable JSON (storyData)
     const cleanedResponse = response
       // .replace(/(?<!\\)\n/g, "\\\\n");
       .replace(/\\\'/g, "'") // Replace \\' with just '

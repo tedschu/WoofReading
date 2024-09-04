@@ -42,8 +42,6 @@ app.get(baseQuery, (req, res) => [
 // Requiring each of our routes - UPDATE AS THESE ARE COMPLETED
 app.use("/auth", require("../auth/index")); // for register and login
 app.use(baseQuery + "users", require("./users"));
-//app.use(baseQuery + "badges", require("./badges"));
-// app.use(baseQuery + "game_state", require("./game_state"));
 app.use(baseQuery + "scores", require("./scores"));
 app.use(baseQuery + "invite", require("./invite"));
 app.use("/anthropic", require("../anthropic/anthropicAPI")); // for Anthropic API routes / endpoints

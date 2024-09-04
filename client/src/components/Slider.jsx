@@ -34,6 +34,7 @@ export default function DiscreteSlider({
     storyLength(newValue);
   };
 
+  // Sets the length of the story (ex. 500 words) in prompt based on the difficulty slider value
   function storyLength(sliderValue) {
     switch (sliderValue) {
       case 1:

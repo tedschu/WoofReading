@@ -109,9 +109,10 @@ button {
   background: transparent;
   border-radius: 10px;
   color: #0085bd;
-  font-size: 25px;
+  font-size: 20px;
   border: 1px solid #0085bd;
   box-shadow: 2px 2px 6px #c1c1c1;
+  margin-bottom: 10px;
 }
 
 .button.recover {
@@ -170,7 +171,7 @@ button {
 }
 
 .button.signup.welcome:hover {
-  background: #cb4527;
+  background: #0085bd;
   color: white;
 }
 
@@ -577,6 +578,10 @@ nav {
   border-radius: 7px;
   padding: 4px;
   margin-left: 15px;
+}
+
+.nextIcon:hover {
+  background-color: #2f8cb4;
 }
 
 .storySelectButtons {
@@ -1182,6 +1187,7 @@ ul li {
   display: flex;
   flex-direction: column;
   width: 80%;
+  margin-bottom: 15px;
 }
 .promptsContentContainer > li {
   font-size: 18px;

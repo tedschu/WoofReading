@@ -58,8 +58,6 @@ function ResetPassModal({
     checkSecurityAnswers(userInfo);
   };
 
-  console.log(userInfo.username);
-
   async function checkSecurityAnswers(userInfo) {
     try {
       const response = await fetch("/auth/check-answers/", {

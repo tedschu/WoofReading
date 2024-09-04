@@ -31,10 +31,6 @@ function GamePlay({
   setStoryPrompt,
   storyType,
 }) {
-  const [questionCount, setQuestionCount] = useState(1);
-  const [userAnswer, setUserAnswer] = useState("");
-  const [questionResult, setQuestionResult] = useState("");
-  const [submitted, setSubmitted] = useState(false);
   const [triggerNewStory, setTriggerNewStory] = useState(false);
   const [triggerNewEvaluation, setTriggerNewEvaluation] = useState(false);
   const [storyResponseData, setStoryResponseData] = useState({
@@ -90,7 +86,6 @@ function GamePlay({
       }
 
       const data = await response.json();
-      //console.log(data.Story);
       setCircularProgress(false);
       setStoryResponseData({
         title: data.Title,
@@ -108,7 +103,7 @@ function GamePlay({
     }
   };
 
-  // Triggers the getStory function but only after all input values (slider, prompt, storylength) have been updated
+  // Triggers the getStory function but only after all input values (slider, prompt, storylength, storyType) have been updated
   useEffect(() => {
     if (triggerNewStory) {
       getStory(storyLength, sliderValue, storyPrompt, storyType);
@@ -141,7 +136,7 @@ function GamePlay({
   // Submit button that calls "evaluate_answers" function / API call
   const submit = (event) => {
     event.preventDefault();
-    setTriggerNewEvaluation(true); // NEEDS TO CALL FUNCTION TO EVALUATE ANSWERS
+    setTriggerNewEvaluation(true);
     setCircularProgressSubmit(true);
     setErrorText("");
   };
@@ -212,7 +207,8 @@ function GamePlay({
     }
   };
 
-  // evaluationData comes in, state is updated.
+  // Takes in raw evaluation score (0 - 3 questions correct) and adds multipliers to create point system.
+  // Multiplier increases as the difficulty slider increases
   function calculateScore(rawScore) {
     let addToScore;
     let points;
@@ -220,7 +216,6 @@ function GamePlay({
       case 1:
         points = 5;
         addToScore = rawScore * points;
-        console.log(addToScore);
         setPointsToWin(points);
         break;
       case 2:
@@ -253,7 +248,6 @@ function GamePlay({
   // Function to pass the updated score to the database, update scores state values for gameplay
   const postUserScore = async (updatedScore) => {
     try {
-      // const updatedScores = getUpdatedScores(gameSelector, addToScore);
       const storedToken = localStorage.getItem("token");
 
       const response = await fetch(`/api/users/${userInfo.id}/score_reading`, {
@@ -271,7 +265,6 @@ function GamePlay({
 
       // SET ALL STATE VALUES HERE (SCORES, BADGES, USER INFO, ETC.)
       if (response.ok) {
-        //setUserBadges(data.badge);
         setUserScore({
           score: updatedScore,
         });
@@ -281,7 +274,7 @@ function GamePlay({
     }
   };
 
-  // Function setting the logic on updating badges
+  // Function setting the logic on updating badges (true / false) based on point totals
   function updateBadges(newTotalScore) {
     setUserBadges((prevBadges) => {
       const updatedBadges = {};
@@ -325,7 +318,6 @@ function GamePlay({
   // Function to pass the updated badges to the database
   const postUserBadges = async (updatedBadges) => {
     try {
-      // const updatedScores = getUpdatedScores(gameSelector, addToScore);
       const storedToken = localStorage.getItem("token");
 
       const response = await fetch(`/api/users/${userInfo.id}/badge_reading`, {
@@ -338,30 +330,28 @@ function GamePlay({
       });
 
       const data = await response.json();
-      //console.log(data);
 
-      // SET ALL STATE VALUES HERE (SCORES, BADGES, USER INFO, ETC.)
-      if (response.ok) {
-        //setUserBadges(data.badge);
-        // console.log(data);
-      }
+      // State values now being set in updateBadges
+      // if (response.ok) {
+      //   //setUserBadges(data.badge);
+      // }
     } catch (error) {
       console.error("Error fetching user data:", error);
     }
   };
 
-  // Controls alert when question was right. Visible for 3 seconds.
+  // Controls alert to user after submitting their answers, showing how many questions they got right and points accrued. Visible for 3.5 seconds.
   useEffect(() => {
     let timer;
     if (gotRight) {
       timer = setTimeout(() => {
         setGotRight(false);
-      }, 3000);
+      }, 3500);
     }
     return () => clearTimeout(timer);
   }, [gotRight]);
 
-  // Finds a random value in the storyPrompt array and sets it in state (storyPrompt)
+  // On "find another story" button. Finds a random value in the storyPrompt array and sets it in state (storyPrompt)
   const selectPrompt = () => {
     const randomIndex = Math.floor(Math.random() * storyPrompts.length);
     const prompt = storyPrompts[randomIndex];
@@ -372,6 +362,7 @@ function GamePlay({
     });
   };
 
+  // Opens modal window showing new badge
   const openModal = () => {
     // console.log("Inside openModal: ", modalBadge);
     setIsModalOpen(true);
@@ -392,7 +383,6 @@ function GamePlay({
           {storyResponseData.body && (
             <>
               <h3 className="gamePlayHeaders">
-                {/* Answer these for up to {pointsToWin} points: */}
                 Answer these to win points & badges:
               </h3>
               <form action="" className="answerForm" onSubmit={submit}>
@@ -492,19 +482,10 @@ function GamePlay({
               </form>
             </>
           )}
-          {/* {gotRight && (
-            <div className="rightAnswerAlert">
-              <h4>Yay! You got it right! That's +{pointsWon} points!</h4>
-            </div>
-          )}
-          {gotWrong && (
-            <div className="wrongAnswerAlert">
-              <h4>Good effort. Keep trying!</h4>
-            </div>
-          )} */}
+
           {showEvaluationChecks && (
             <button className="button signup welcome" onClick={selectPrompt}>
-              Try another story!
+              TRY ANOTHER STORY
             </button>
           )}
           {errorText && <h3 style={{ color: "red" }}>{errorText}</h3>}
