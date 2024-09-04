@@ -38,7 +38,7 @@ function Prompts({ isLoggedIn }) {
           </p>
 
           {storyPrompts.map((prompt) => (
-            <li>{prompt}</li>
+            <li key={prompt}>{prompt}</li>
           ))}
         </div>
       </div>

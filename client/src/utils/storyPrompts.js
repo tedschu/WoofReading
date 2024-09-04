@@ -63,7 +63,6 @@ const storyPrompts = [
   "the north pole",
   "why the sky is blue",
   "why lightning happens during storms",
-  "the tallest mountain",
   "a championship soccer match",
   "an underdog football team",
   "traveling to another country",
