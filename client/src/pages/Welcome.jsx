@@ -98,7 +98,11 @@ function Welcome() {
             <div className="welcomeAboutContent bottom">
               <h2>Woof Reading game play:</h2>
               <ul>
-                <li>...</li>
+                <li>
+                  Pick what you want to read: a story, maybe a poem? Then, find
+                  a story topic that sounds fun. Choose how challenging the
+                  story should be, as well.
+                </li>
                 <li>
                   See how you do! The more questions you get right, the more
                   points and animal badges you earn.
