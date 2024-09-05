@@ -192,10 +192,7 @@ function About({ isLoggedIn }) {
             </li>
             <li>
               <span className="bold">Username:</span> This is how game players
-              will be referred to during game play. In future releases, we may
-              aim to show "leaderboards" that would show usernames (and
-              usernames only) for those that have (for example) acquired the
-              most badges. You will be notified of any such changes in the app.
+              will be referred to during game play.
             </li>
             <li>
               <span className="bold">Password:</span> Your password will be
