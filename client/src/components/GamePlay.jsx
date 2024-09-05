@@ -131,7 +131,8 @@ function GamePlay({
     setStoryResponseData(newObj);
   };
 
-  // Submit button that calls "evaluate_answers" function / API call
+  // Submit button that calls "evaluateAnswers" function / API call
+  // Only calls evaluateAnswers IF there are no user responses (answers) that are "bad words", from the badWords list.
   const submit = (event) => {
     event.preventDefault();
     if (checkBadWords() === true) {
@@ -143,16 +144,14 @@ function GamePlay({
     }
   };
 
-  console.log(storyResponseData.answer_1);
-
+  // Stores user responses (answers) into a separate array so that checkBadWords function can iterate through
   const userResponsesArray = [
     storyResponseData.answer_1,
     storyResponseData.answer_2,
     storyResponseData.answer_3,
   ];
 
-  console.log(userResponsesArray);
-
+  // Checks userResponsesArray for "bad words" and returns "true" to the submit function, which will throw an error message to the user.
   const checkBadWords = () => {
     for (let i = 0; i < userResponsesArray.length; i++) {
       if (badWords.includes(userResponsesArray[i])) return true;
