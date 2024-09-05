@@ -94,10 +94,9 @@ function About({ isLoggedIn }) {
             example, "write a poem about my dog Charlie" - and then constructing
             stories that are legible, interesting - and if you're asking about
             real-world information ("write a story about Abraham Lincoln") -
-            also reliably accurate. Most relevantly, we're using AI as the basis
-            for Woof Reading because the technology makes it possible: tools
-            such as Claude are particularly strong at making sense of
-            information and providing feedback that is easy to understand.
+            also reliably accurate. It is also particularly strong at making
+            sense of information and providing feedback that is easy to
+            understand, and conversational.
           </p>
           <p>
             Woof Reading is NOT intended to replace live instruction, or reading
@@ -110,13 +109,14 @@ function About({ isLoggedIn }) {
           </p>
           <h3>What are you doing to make this app safe to use?</h3>
           <p>
-            AI tools are very "intelligent," but are very much guided by what a
-            user asks them to do. Woof Reading, for this reason, relies on two
-            simple inputs to the Claude system: (1) the type of content to
-            create (ex. "poem," "story"), and (2) a fixed set of prompts (story
-            ideas) that we have selected, and which a user can choose in the
-            app. So for instance, during the game, you may ask Woof Reading to
-            write a "poem" about "space travel." You can{" "}
+            AI tools are very "intelligent," but are guided by what a user asks
+            them to do. Woof Reading, for this reason, does not allow you to
+            freely ask for any story idea. Instead, it relies on two simple
+            inputs to the Claude system: (1) the type of content to create (ex.
+            "poem," "story"), and (2) a fixed set of prompts (story ideas) that
+            we have selected, and which a user can choose in the app. So for
+            instance, during the game, you may ask Woof Reading to write a
+            "poem" about "space travel." You can{" "}
             <Link className="promptsLinks" to={"/prompts"}>
               see all of the pre-set prompts for Woof reading here
             </Link>
