@@ -80,7 +80,7 @@ function About({ isLoggedIn }) {
           </h2>
           <p>
             Woof Reading uses an AI assistant called{" "}
-            <Link className="promptsLinks" to={"claude.ai"}>
+            <Link className="promptsLinks" to={"http://claude.ai"}>
               Claude
             </Link>{" "}
             from Anthropic to (1) generate story ideas and questions about those
