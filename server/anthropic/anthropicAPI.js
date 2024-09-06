@@ -47,7 +47,7 @@ router.get("/generate_story", async (req, res) => {
         content: [
           {
             type: "text",
-            text: `Generate approximately a ${story_length}-word ${story_type} with a difficulty level of ${difficulty} (out of 5) about ${story_topic}, followed by 3 questions about the ${story_type}. Return the result as a valid JSON object with the following structure:
+            text: `Generate approximately a ${story_length}-word ${story_type} about ${story_topic}, followed by 3 questions about the ${story_type}. The ${story_type} should have a difficulty level of ${difficulty} (out of 5) - for example, a "1" should use simple language at a first or second-grade reading level, whereas a "5" should be at a fifth or sixth-grade level. Return the result as a valid JSON object with the following structure:
 
             {
               "Title": "Your ${story_type} title",
@@ -150,7 +150,7 @@ router.post("/evaluate_answers", async (req, res) => {
         content: [
           {
             type: "text",
-            text: `Using the JSON object below, review the answers to the three questions and evaluate whether the answers were correct. If the user has small spelling or punctuation errors, don't automatically evaluate as incorrect. Instead, provide feedback where applicable.
+            text: `Using the JSON object below, review the answers to the three questions and evaluate whether the answers were correct. If the user has small spelling or punctuation errors, you can still evaluate it as "correct" and provide feedback where applicable.
 
             ${storyResponseData}
             

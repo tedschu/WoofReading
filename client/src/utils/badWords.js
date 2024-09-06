@@ -57,6 +57,7 @@ const badWords = [
   "nigger",
   "nigga",
   "nuts",
+  "nutsack",
   "penis",
   "piss",
   "poop",

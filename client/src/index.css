@@ -691,6 +691,11 @@ nav {
   text-align: center;
   flex-wrap: wrap;
   padding: 5px;
+  font-size: 20px;
+}
+
+.answerForm > p {
+  font-size: 22px;
 }
 
 .gamePlay > form {
@@ -703,6 +708,7 @@ nav {
 
 .preserve-linebreaks {
   white-space: pre-wrap;
+  font-size: 22px;
 }
 
 .questionContainer {

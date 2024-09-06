@@ -495,7 +495,9 @@ function GamePlay({
                     <h4>Good effort. Keep trying!</h4>
                   </div>
                 )}
-                <button className="button login">SUBMIT</button>
+                {!showEvaluationChecks && (
+                  <button className="button login">SUBMIT</button>
+                )}
               </form>
             </>
           )}
