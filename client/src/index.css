@@ -888,7 +888,7 @@ input[type="number"]::-webkit-inner-spin-button {
   /* background: #d4492b; */
   justify-content: center;
   background-image: linear-gradient(#04628a, #7dc2e0);
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .registerContentContainer {
@@ -1318,6 +1318,10 @@ ul li {
   .individualScores > h1 {
     font-size: 30px;
   }
+}
+
+.registerPageContainer {
+  height: 100vh;
 }
 
 /* SCREEN IS ABOVE 900px (desktop) */
