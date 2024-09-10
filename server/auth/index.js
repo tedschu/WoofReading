@@ -12,7 +12,7 @@ router.post("/register", async (req, res) => {
   try {
     const {
       // name,
-      birth_year,
+      //birth_year,
       email,
       username,
       password,
@@ -32,7 +32,7 @@ router.post("/register", async (req, res) => {
     }
 
     if (
-      !birth_year ||
+      //!birth_year ||
       !email ||
       !username ||
       !password ||
@@ -50,7 +50,7 @@ router.post("/register", async (req, res) => {
     const newUser = await prisma.user.create({
       data: {
         // name: req.body.name,
-        birth_year: req.body.birth_year,
+        //birth_year: req.body.birth_year,
         email: req.body.email,
         username: req.body.username,
         password: hashPassword,
@@ -106,7 +106,7 @@ router.post("/register", async (req, res) => {
         // name: newUser.name,
         username: newUser.username,
         email: newUser.email,
-        birth_year: newUser.birth_year,
+        //birth_year: newUser.birth_year,
         total_logins: newUser.total_logins,
         last_login: newUser.last_login,
       },
