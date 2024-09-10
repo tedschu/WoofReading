@@ -79,7 +79,7 @@ function Login({ setIsLoggedIn, isLoggedIn, userInfo, setUserInfo }) {
           <img
             src={woofMathLogo}
             alt="WoofMath logo"
-            className="woofMathLogo"
+            className="woofMathLogo-small"
           />
 
           <div className="loginContentContainer">

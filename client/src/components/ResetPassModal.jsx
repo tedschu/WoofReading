@@ -45,8 +45,10 @@ function ResetPassModal({
           security_question_2: data.security_question_2,
         });
         setResetStep(2);
+        setErrorMessage("");
       } else {
         console.error("Error fetching usernames", data);
+        setErrorMessage(data.message);
       }
     } catch (error) {
       //setNoUsers(true);

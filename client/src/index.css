@@ -225,6 +225,10 @@ button {
   width: 350px;
 }
 
+.woofMathLogo-small {
+  width: 250px;
+}
+
 .welcomeContentContainer {
   display: flex;
   flex-direction: column;
@@ -828,14 +832,13 @@ input[type="number"]::-webkit-inner-spin-button {
   /* background: #d4492b; */
   justify-content: center;
   background-image: linear-gradient(#04628a, #7dc2e0);
-  height: 100vh;
 }
 
 .loginContainer {
   display: flex;
   flex-direction: column;
   width: 70%;
-
+  padding: 60px 0px;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -927,6 +930,10 @@ input[type="number"]::-webkit-inner-spin-button {
 
 .registerForm > label {
   font-size: 22px;
+}
+
+.blackFont {
+  color: black;
 }
 
 .registerForm > input {

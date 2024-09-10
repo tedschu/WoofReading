@@ -62,7 +62,7 @@ function RecoverModal({
           <h2>Let's get your username.</h2>
 
           <form action="" className="registerForm" onSubmit={submit}>
-            <label htmlFor="name">
+            <label htmlFor="name" className="blackFont">
               What was the email used to create the account(s)?
             </label>
             <input
