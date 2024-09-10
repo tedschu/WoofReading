@@ -82,7 +82,6 @@ function App() {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
-              "X-Application": "WoofReading",
               Authorization: `Bearer ${storedToken}`,
             },
           });
