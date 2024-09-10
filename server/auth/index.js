@@ -206,6 +206,7 @@ router.get("/get-questions/:username", async (req, res) => {
     const users = await prisma.user.findUnique({
       where: {
         username: req.params.username,
+        mode: "insensitive",
       },
       select: {
         security_question_1: true,
@@ -213,7 +214,7 @@ router.get("/get-questions/:username", async (req, res) => {
       },
     });
 
-    if (users.length === 0) {
+    if (!user) {
       return res.status(404).json({ message: "This username does not exist" });
     }
     res.send(users);
