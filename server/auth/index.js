@@ -219,7 +219,7 @@ router.get("/get-questions/:username", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "This username does not exist" });
     }
-    res.send(users);
+    res.send(user);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
