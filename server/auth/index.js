@@ -203,10 +203,12 @@ router.get("/find-username/:email", async (req, res) => {
 // Part of password recovery process
 router.get("/get-questions/:username", async (req, res) => {
   try {
-    const users = await prisma.user.findUnique({
+    const user = await prisma.user.findFirst({
       where: {
-        username: req.params.username,
-        mode: "insensitive",
+        username: {
+          equals: req.params.username,
+          mode: "insensitive",
+        },
       },
       select: {
         security_question_1: true,
