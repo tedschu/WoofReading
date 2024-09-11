@@ -85,9 +85,10 @@ button {
 }
 
 .button.login {
-  width: 200px;
+  width: 220px;
   border-radius: 10px;
   background-image: linear-gradient(#d4492b, #ff8b71);
+  border: 1px solid #d4492b;
   color: white;
   font-size: 25px;
   border: none;
@@ -1325,10 +1326,10 @@ ul li {
   .individualScores > h1 {
     font-size: 30px;
   }
-}
 
-.registerPageContainer {
-  height: 100vh;
+  .registerPageContainer {
+    height: 100vh;
+  }
 }
 
 /* SCREEN IS ABOVE 900px (desktop) */

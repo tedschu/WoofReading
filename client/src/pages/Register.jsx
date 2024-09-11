@@ -65,7 +65,7 @@ function Register({ setIsLoggedIn, isLoggedIn, userInfo, setUserInfo }) {
             {" "}
             <span className="italicRegister">
               {" "}
-              Why my <Link to={"woofmath.com"}>Woof Math</Link> username?
+              Why my <Link to={"http://woofmath.com"}>Woof Math</Link> username?
             </span>{" "}
             When Woof Reading is fully launched, you'll be able to access it as
             well as Woof Math with the same login information. For now, this is
