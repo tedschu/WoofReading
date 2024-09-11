@@ -189,7 +189,10 @@ router.get("/find-username/:email", async (req, res) => {
   try {
     const users = await prisma.user.findMany({
       where: {
-        email: req.params.email,
+        email: {
+          equals: req.params.email,
+          mode: "insensitive",
+        },
       },
       select: {
         username: true,
