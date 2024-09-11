@@ -28,6 +28,8 @@ function GamePlay({
   storyPrompt,
   setStoryPrompt,
   storyType,
+  pointsToWin,
+  setPointsToWin,
 }) {
   const [triggerNewStory, setTriggerNewStory] = useState(false);
   const [triggerNewEvaluation, setTriggerNewEvaluation] = useState(false);
@@ -55,7 +57,7 @@ function GamePlay({
   const [circularProgress, setCircularProgress] = useState(false);
   const [circularProgressSubmit, setCircularProgressSubmit] = useState(false);
   const [errorText, setErrorText] = useState("");
-  const [pointsToWin, setPointsToWin] = useState("");
+  const [potentialPoints, setPotentialPoints] = useState(0);
 
   // ***** STORY GENERATION *****
   // Function to hit generate_story endpoint (e.g. Anthropic API) to get a story based on values passed in
@@ -121,6 +123,7 @@ function GamePlay({
     });
     setGotWrong(false);
     setErrorText("");
+    setPotentialPoints(pointsToWin);
   };
 
   // ***** USER ANSWERS AND EVALUATION *****
@@ -227,36 +230,10 @@ function GamePlay({
   // Takes in raw evaluation score (0 - 3 questions correct) and adds multipliers to create point system.
   // Multiplier increases as the difficulty slider increases
   function calculateScore(rawScore) {
-    let addToScore;
-    let points;
-    switch (sliderValue) {
-      case 1:
-        points = 5;
-        addToScore = rawScore * points;
-        setPointsToWin(points);
-        break;
-      case 2:
-        points = 7;
-        addToScore = rawScore * points;
-        setPointsToWin(points);
-        break;
-      case 3:
-        points = 10;
-        addToScore = rawScore * points;
-        setPointsToWin(points);
-        break;
-      case 4:
-        points = 12;
-        addToScore = rawScore * points;
-        setPointsToWin(points);
-        break;
-      case 5:
-        points = 15;
-        addToScore = rawScore * points;
-        setPointsToWin(points);
-        break;
-    }
+    let addToScore = potentialPoints * rawScore;
+
     let updatedScore = addToScore + userScore.score;
+
     postUserScore(updatedScore);
     setPointsWon(addToScore);
     updateBadges(updatedScore);
@@ -400,7 +377,7 @@ function GamePlay({
           {storyResponseData.body && (
             <>
               <h3 className="gamePlayHeaders">
-                Answer these to win points & badges:
+                Answer these to win up to {potentialPoints * 3} points!
               </h3>
               <form action="" className="answerForm" onSubmit={submit}>
                 <p>{storyResponseData.question_1}</p>

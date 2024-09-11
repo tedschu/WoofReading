@@ -29,6 +29,7 @@ function Game({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalBadge, setModalBadge] = useState("");
   const [storyPrompt, setStoryPrompt] = useState("");
+  const [pointsToWin, setPointsToWin] = useState(10);
 
   const navigate = useNavigate();
 
@@ -58,6 +59,8 @@ function Game({
           userInfo={userInfo}
           totalScore={totalScore}
           setTotalScore={setTotalScore}
+          setPointsToWin={setPointsToWin}
+          pointsToWin={pointsToWin}
         />
 
         <StorySelector
@@ -75,6 +78,8 @@ function Game({
           setGotRight={setGotRight}
           setGotWrong={setGotWrong}
           setStoryLength={setStoryLength}
+          setPointsToWin={setPointsToWin}
+          pointsToWin={pointsToWin}
         />
 
         <GamePlay
@@ -97,6 +102,7 @@ function Game({
           setStoryPrompt={setStoryPrompt}
           storyType={storyType}
           setStoryType={setStoryType}
+          pointsToWin={pointsToWin}
         />
 
         <BadgeModal

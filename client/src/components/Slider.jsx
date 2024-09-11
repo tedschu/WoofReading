@@ -26,12 +26,15 @@ export default function DiscreteSlider({
   setGotRight,
   setGotWrong,
   setStoryLength,
+  pointsToWin,
+  setPointsToWin,
 }) {
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
     setGotRight(false);
     setGotWrong(false);
     storyLength(newValue);
+    assignPoints(newValue);
   };
 
   // Sets the length of the story (ex. 500 words) in prompt based on the difficulty slider value
@@ -51,6 +54,34 @@ export default function DiscreteSlider({
         break;
       case 5:
         setStoryLength(550);
+        break;
+    }
+  }
+
+  // Default state value for pointsToWin === 10 (in Game)
+  function assignPoints(sliderValue) {
+    let points;
+
+    switch (sliderValue) {
+      case 1:
+        points = 10;
+        setPointsToWin(points);
+        break;
+      case 2:
+        points = 12;
+        setPointsToWin(points);
+        break;
+      case 3:
+        points = 14;
+        setPointsToWin(points);
+        break;
+      case 4:
+        points = 16;
+        setPointsToWin(points);
+        break;
+      case 5:
+        points = 18;
+        setPointsToWin(points);
         break;
     }
   }
