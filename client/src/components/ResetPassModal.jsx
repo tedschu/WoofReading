@@ -60,6 +60,7 @@ function ResetPassModal({
     checkSecurityAnswers(userInfo);
   };
 
+  // Step 2: Checks answers to security questions
   async function checkSecurityAnswers(userInfo) {
     try {
       const response = await fetch("/auth/check-answers/", {
@@ -92,6 +93,7 @@ function ResetPassModal({
     updatePassword(userInfo);
   };
 
+  // Step 3: updates a user's password
   async function updatePassword(userInfo) {
     try {
       const response = await fetch("/auth/reset-password", {
