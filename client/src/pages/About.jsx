@@ -91,12 +91,13 @@ function About({ isLoggedIn }) {
           <h3>Why are you using AI?</h3>
           <p>
             This technology is particularly good at taking prompts - for
-            example, "write a poem about my dog Charlie" - and then constructing
-            stories that are legible, interesting - and if you're asking about
-            real-world information ("write a story about Abraham Lincoln") -
-            also reliably accurate. It is also particularly strong at making
-            sense of information and providing feedback that is easy to
-            understand, and conversational.
+            example, "write a poem about my dog Charlie," and then constructing
+            stories that are not just legible, but also quite interesting.
+            Similarly, if you're asking about real-world information ("write a
+            story about Abraham Lincoln") - you'll also find the responses to be
+            reliably accurate. The technology also does an impressive job of
+            making sense of information and providing feedback that is easy to
+            understand, and conversational in tone.
           </p>
           <p>
             Woof Reading is NOT intended to replace live instruction, or reading
@@ -112,16 +113,18 @@ function About({ isLoggedIn }) {
             AI tools are very "intelligent," but are guided by what a user asks
             them to do. Woof Reading, for this reason, does not allow you to
             freely ask for any story idea. Instead, it relies on two simple
-            inputs to the Claude system: (1) the type of content to create (ex.
-            "poem," "story"), and (2) a fixed set of prompts (story ideas) that
-            we have selected, and which a user can choose in the app. So for
-            instance, during the game, you may ask Woof Reading to write a
-            "poem" about "space travel." You can{" "}
+            inputs: (1) the type of content to create (ex. "poem," "story"), and
+            (2) a fixed set of prompts (story ideas) that we have selected, and
+            which a user can choose in the app. So for instance, during the
+            game, you may ask Woof Reading to write a "poem" about "space
+            travel." You can{" "}
             <Link className="promptsLinks" to={"/prompts"}>
               see all of the pre-set prompts for Woof reading here
             </Link>
             . Put simply, we set the type of stories that can be created so that
-            all topics are safe and, ideally, interesting.
+            all topics are safe and, ideally, interesting. We also have
+            additional safeguards in place to ensure that appropriate language
+            is used.
           </p>
           <p>
             Anthropic (the maker of Claude) also details their user safety
