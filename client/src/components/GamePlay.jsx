@@ -480,7 +480,7 @@ function GamePlay({
           )}
 
           {showEvaluationChecks && (
-            <button className="button signup welcome" onClick={selectPrompt}>
+            <button className="button nextStory" onClick={selectPrompt}>
               TRY ANOTHER STORY
             </button>
           )}

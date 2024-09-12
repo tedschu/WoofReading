@@ -39,7 +39,7 @@ const storyPrompts = [
   "how dogs came from wolves",
   "a sneaky cat",
   "how fast a cheetah can run",
-  "my new dog, Max",
+  "my new dog, Charlie",
   "why dogs bark",
   "why cats have whiskers",
   "bears hibernating for winter",

@@ -116,6 +116,20 @@ button {
   margin-bottom: 10px;
 }
 
+.button.nextStory {
+  width: 200px;
+  background: #0085bd;
+  border-radius: 10px;
+  color: white;
+  font-size: 20px;
+  box-shadow: 2px 2px 6px #c1c1c1;
+  margin-bottom: 10px;
+}
+
+.button.nextStory:hover {
+  background: #d4492b;
+}
+
 .button.recover {
   width: 180px;
   background: lightgray;
