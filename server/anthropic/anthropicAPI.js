@@ -82,8 +82,8 @@ router.get("/generate_story", async (req, res) => {
     const cleanedResponse = response
       // .replace(/(?<!\\)\n/g, "\\\\n");
       .replace(/\\\'/g, "'") // Replace \\' with just '
-      .replace(/\\'/g, "'") // Replace \' with just '
-      .replace(/\\"/g, '"'); // Replace \' with just '
+      .replace(/\\'/g, "'"); // Replace \' with just '
+    //.replace(/\\"/g, '"'); // Replace \' with just '
     // .replace(/'/g, "\\'") // Then replace all ' with \'
     // .replace(/\n/g, "\\n") // Replace newlines with \n
     // .replace(/[\u0000-\u0019]+/g, "");
