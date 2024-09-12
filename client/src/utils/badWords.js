@@ -19,6 +19,8 @@ const badWords = [
   "bum",
   "butt",
   "buttplug",
+  "butthole",
+  "butts",
   "clitoris",
   "cock",
   "coon",

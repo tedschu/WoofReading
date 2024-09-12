@@ -83,7 +83,7 @@ router.get("/generate_story", async (req, res) => {
       // .replace(/(?<!\\)\n/g, "\\\\n");
       .replace(/\\\'/g, "'") // Replace \\' with just '
       .replace(/\\'/g, "'"); // Replace \' with just '
-    //.replace(/\\"/g, '"'); // Replace \' with just '
+    //.replace(/\\"/g, '"'); // Replace \' with just '   // This was causing parsing errors by unescaping " " in the stories
     // .replace(/'/g, "\\'") // Then replace all ' with \'
     // .replace(/\n/g, "\\n") // Replace newlines with \n
     // .replace(/[\u0000-\u0019]+/g, "");

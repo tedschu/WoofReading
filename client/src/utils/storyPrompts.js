@@ -90,6 +90,9 @@ const storyPrompts = [
   "a trip to pluto",
   "the great wall of china",
   "the grand canyon",
+  "the lost treasure",
+  "my pet giraffe",
+  "why you float in outer space",
 ];
 
 // Themes:
