@@ -21,7 +21,7 @@ router.get("/", async (req, res) => {
         game_state: true,
       },
     });
-    res.send(users);
+    res.status(200).send(users);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -44,7 +44,7 @@ router.get("/me", verifyToken, async (req, res) => {
         game_state: true,
       },
     });
-    res.send(user);
+    res.status(200).send(user);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -98,14 +98,12 @@ router.put("/:id", verifyToken, async (req, res) => {
         id: parseInt(req.user),
       },
       data: {
-        // name: req.body.name,
-        birth_year: req.body.birth_year,
         email: req.body.email,
         username: req.body.username,
         password: hashPassword,
       },
     });
-    res.send(user);
+    res.status(200).send(user);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -121,7 +119,7 @@ router.put("/:user_id/score_reading", verifyToken, async (req, res) => {
       },
       data: req.body,
     });
-    res.send(score);
+    res.status(200).send(score);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -137,7 +135,7 @@ router.put("/:user_id/badge_reading", verifyToken, async (req, res) => {
       },
       data: req.body,
     });
-    res.send(badge);
+    res.status(200).send(badge);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);

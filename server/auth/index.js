@@ -11,8 +11,6 @@ const prisma = new PrismaClient();
 router.post("/register", async (req, res) => {
   try {
     const {
-      // name,
-      //birth_year,
       email,
       username,
       password,
@@ -32,7 +30,6 @@ router.post("/register", async (req, res) => {
     }
 
     if (
-      //!birth_year ||
       !email ||
       !username ||
       !password ||
@@ -49,8 +46,6 @@ router.post("/register", async (req, res) => {
     const hashPassword = await bcrypt.hash(req.body.password, saltRounds);
     const newUser = await prisma.user.create({
       data: {
-        // name: req.body.name,
-        //birth_year: req.body.birth_year,
         email: req.body.email,
         username: req.body.username,
         password: hashPassword,
@@ -99,14 +94,12 @@ router.post("/register", async (req, res) => {
       process.env.JWT_SECRET
     );
 
-    res.json({
+    res.status(200).json({
       token: token,
       user: {
         id: newUser.id,
-        // name: newUser.name,
         username: newUser.username,
         email: newUser.email,
-        //birth_year: newUser.birth_year,
         total_logins: newUser.total_logins,
         last_login: newUser.last_login,
       },
@@ -122,8 +115,10 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     //gets user and pass from body
-    const username = req.body.username;
-    const password = req.body.password;
+    // const username = req.body.username;
+    // const password = req.body.password;
+
+    const { username, password } = req.body;
 
     const user = await prisma.user.findFirst({
       where: {
@@ -175,7 +170,7 @@ router.post("/login", async (req, res) => {
           },
           process.env.JWT_SECRET
         );
-        res.send({ token: token, id: userMatch.id });
+        res.status(200).send({ token: token, id: userMatch.id });
       }
     }
   } catch (error) {
@@ -204,7 +199,7 @@ router.get("/find-username/:email", async (req, res) => {
         .status(404)
         .json({ message: "No user was found with this email" });
     }
-    res.send(users);
+    res.status(200).send(users);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -231,7 +226,7 @@ router.get("/get-questions/:username", async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "This username does not exist" });
     }
-    res.send(user);
+    res.status(200).send(user);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);
@@ -280,7 +275,9 @@ router.post("/check-answers", async (req, res) => {
       security_answer_2.toLowerCase() ==
         answerMatch.security_answer_2.toLowerCase()
     ) {
-      return res.json({ message: "Success", username: answerMatch.username });
+      return res
+        .status(200)
+        .json({ message: "Success", username: answerMatch.username });
     } else {
       answerAttempts++;
       return res.status(400).json({ message: "Your answers don't match." });
@@ -323,7 +320,7 @@ router.put("/reset-password", async (req, res) => {
     });
 
     if (updatePassword) {
-      res.json({ message: "Password successfully updated." });
+      res.status(200).json({ message: "Password successfully updated." });
     } else {
       res.status(400).json({ message: "Password not updated." });
     }

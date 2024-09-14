@@ -96,7 +96,7 @@ router.get("/generate_story", async (req, res) => {
     console.log("parsed response:", storyData);
 
     // Sends back storyData JSON object with Title, Story, Question 1, Question 2, Question 3 keys.
-    res.json(storyData);
+    res.status(200).json(storyData);
   } catch (error) {
     console.error("Error generating story:", error);
     res.status(500).json({ error: "Failed to generate story." });

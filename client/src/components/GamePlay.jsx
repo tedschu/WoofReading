@@ -156,8 +156,12 @@ function GamePlay({
 
   // Checks userResponsesArray for "bad words" and returns "true" to the submit function, which will throw an error message to the user.
   const checkBadWords = () => {
-    for (let i = 0; i < userResponsesArray.length; i++) {
-      if (badWords.includes(userResponsesArray[i])) return true;
+    const lowerCaseBadWords = userResponsesArray.map((word) =>
+      word.toLowerCase()
+    );
+
+    for (let i = 0; i < lowerCaseBadWords.length; i++) {
+      if (badWords.includes(lowerCaseBadWords[i])) return true;
     }
   };
 

@@ -42,7 +42,7 @@ app.get(baseQuery, (req, res) => [
 // Requiring each of our routes - UPDATE AS THESE ARE COMPLETED
 app.use("/auth", require("../auth/index")); // for register and login
 app.use(baseQuery + "users", require("./users"));
-app.use(baseQuery + "scores", require("./scores"));
+// app.use(baseQuery + "scores", require("./scores"));
 app.use(baseQuery + "invite", require("./invite"));
 app.use("/anthropic", require("../anthropic/anthropicAPI")); // for Anthropic API routes / endpoints
 
@@ -50,5 +50,5 @@ app.use(express.static(path.join(__dirname, "/../../client/dist")));
 app.use("*", express.static(path.join(__dirname, "/../../client/dist")));
 
 app.listen(port, () => {
-  console.log(`WoofMath is running at port ${port}`);
+  console.log(`WoofReading is running at port ${port}`);
 });
