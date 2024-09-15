@@ -1,10 +1,10 @@
-## Woof Reading Database Schema Documentation
+# Woof Reading Database Schema Documentation
 
-# Overview
+## Overview
 
 The Woof Reading application uses Prisma to manage the schema plus a PostgreSQL database to store user information, scores, badges, and game states. This database is also shared with another frontend application, Woof Math. This document outlines the structure of the database tables and their relationships.
 
-# Tables
+## Tables
 
 1. Users
 2. Scores (for Woof Math application)
@@ -13,7 +13,7 @@ The Woof Reading application uses Prisma to manage the schema plus a PostgreSQL 
 5. Reading Scores
 6. Reading Badges
 
-# Users
+## Users
 
 The `users` table stores essential information about registered users.
 
@@ -33,7 +33,7 @@ The `users` table stores essential information about registered users.
 | created_at          | TIMESTAMP    | DEFAULT NOW()      | Timestamp of when the user was created  |
 | updated_at          | TIMESTAMP    | DEFAULT NOW()      | Timestamp of last update to user record |
 
-# Scores
+## Scores
 
 The `scores` table keeps track of user scores for different math operations (used in Woof Math application).
 
@@ -48,7 +48,7 @@ The `scores` table keeps track of user scores for different math operations (use
 | created_at           | TIMESTAMP | DEFAULT NOW()      | Timestamp of when the record was created |
 | updated_at           | TIMESTAMP | DEFAULT NOW()      | Timestamp of last update to the record   |
 
-# Badges
+## Badges
 
 The `badges` table stores information about badges earned by users (used in Woof Math application).
 
@@ -60,7 +60,7 @@ The `badges` table stores information about badges earned by users (used in Woof
 | created_at  | TIMESTAMP | DEFAULT NOW()      | Timestamp of when the record was created  |
 | updated_at  | TIMESTAMP | DEFAULT NOW()      | Timestamp of last update to the record    |
 
-# Game States
+## Game States
 
 The `game_state` table is currently unused but is planned to store the current game state for each user in Woof Math.
 
@@ -72,7 +72,7 @@ The `game_state` table is currently unused but is planned to store the current g
 | created_at    | TIMESTAMP | DEFAULT NOW()      | Timestamp of when the record was created |
 | updated_at    | TIMESTAMP | DEFAULT NOW()      | Timestamp of last update to the record   |
 
-# Reading Scores
+## Reading Scores
 
 The `score_reading` table keeps track of user scores for Woof Reading activities.
 
@@ -84,7 +84,7 @@ The `score_reading` table keeps track of user scores for Woof Reading activities
 | created_at  | TIMESTAMP | DEFAULT NOW()      | Timestamp of when the record was created |
 | updated_at  | TIMESTAMP | DEFAULT NOW()      | Timestamp of last update to the record   |
 
-# Reading Badges
+## Reading Badges
 
 The `badge_reading` table stores information about Woof Reading-related badges earned by users.
 
@@ -103,7 +103,7 @@ The `badge_reading` table stores information about Woof Reading-related badges e
 | created_at          | TIMESTAMP | DEFAULT NOW()      | Timestamp of when the record was created        |
 | updated_at          | TIMESTAMP | DEFAULT NOW()      | Timestamp of last update to the record          |
 
-# Relationships
+## Relationships
 
 1. A user can have one score record for Woof Math (1:1 relationship between Users and Scores)
 2. A user can have one badge record for Woof Math (1:1 relationship between Users and Badges)
@@ -111,7 +111,7 @@ The `badge_reading` table stores information about Woof Reading-related badges e
 4. A user can have one reading score record for Woof Reading (1:1 relationship between Users and Reading Scores)
 5. A user can have one reading badge record for Woof Reading (1:1 relationship between Users and Reading Badges)
 
-# Notes
+## Notes
 
 1. All tables include `created_at` and `updated_at` timestamps for tracking record creation and modification times.
 2. The `users` table includes security questions and answers for account recovery purposes.

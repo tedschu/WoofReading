@@ -6,11 +6,11 @@
 2. Users
 3. Anthropic Integration
 
-## Authentication
+# Authentication
 
 Base URL: /auth
 
-# Register a new user (currently handled through woofmath.com, but will include the following)
+## Register a new user (currently handled through woofmath.com, but will include the following)
 
 - URL: /register
 - Method: POST
@@ -38,7 +38,7 @@ Base URL: /auth
     },
     }
 
-# Login
+## Login
 
 - URL: /login
 - Method: POST
@@ -49,7 +49,7 @@ Base URL: /auth
   - Body:
     { "token": "token", "id": "user_id" }
 
-# Find username
+## Find username
 
 - URL: /find-username/:email
 - Method: GET
@@ -65,7 +65,7 @@ Base URL: /auth
     }
     ]
 
-# Get security questions
+## Get security questions
 
 - URL: /get-questions/:username
 - Method: GET
@@ -77,7 +77,7 @@ Base URL: /auth
     "security_question_2": "What's your pet's name?"
     }
 
-# Get security answers
+## Get security answers
 
 - URL: /check-answers
 - Method: POST
@@ -95,7 +95,7 @@ Base URL: /auth
     "username": "existinguser"
     }
 
-# Reset password
+## Reset password
 
 - URL: /reset-password
 - Method: PUT
@@ -111,20 +111,11 @@ Base URL: /auth
     "message": "Password successfully updated."
     }
 
-## Users
+# Users
 
 Base URL: /api/users
 
-# Get all users
-
-- URL: /
-- Method: GET
-- Authentication: Required
-- Success response:
-  - Code: 200
-  - Content: Array of user objects
-
-# Get current user
+## Get current user
 
 - URL: /me
 - Method: GET
@@ -133,7 +124,7 @@ Base URL: /api/users
   - Code: 200
   - Content: User object
 
-# Delete user
+## Delete user
 
 - URL: /:id
 - Method: DELETE
@@ -142,7 +133,7 @@ Base URL: /api/users
   - Code: 200
   - Content: User object
 
-# Update user
+## Update user
 
 - URL: /:id
 - Method: PUT
@@ -157,7 +148,7 @@ Base URL: /api/users
   - Code: 200
   - Content: Updated user object
 
-# Update user reading score
+## Update user reading score
 
 - URL: /:user_id/score_reading
 - Method: PUT
@@ -167,7 +158,7 @@ Base URL: /api/users
   - Code: 200
   - Content: Updated score object
 
-# Update user reading badge
+## Update user reading badge
 
 - URL: /:user_id/badge_reading
 - Method: PUT
@@ -177,11 +168,11 @@ Base URL: /api/users
   - Code: 200
   - Content: Updated badge object
 
-## Anthropic integration
+# Anthropic integration
 
 Base URL: /anthropic
 
-# Generate a story
+## Generate a story
 
 - URL: /generate_story
 - Method: GET
@@ -197,7 +188,7 @@ Base URL: /anthropic
     ]
     }
 
-# Evaluate user answers
+## Evaluate user answers
 
 - URL: /evaluate_answers
 - Method: POST

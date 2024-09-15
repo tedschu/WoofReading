@@ -1,6 +1,6 @@
-## Woof Reading Authentication System Documentation
+# Woof Reading Authentication System Documentation
 
-# Table of Contents
+## Table of Contents
 
 1. Overview
 2. Technologies Used
@@ -12,11 +12,11 @@
 8. Security Measures
 9. API Endpoints
 
-# Overview
+## Overview
 
 The Woof Reading application uses a JWT (JSON Web Token)-based authentication system. This system provides secure user registration, login, and password reset functionalities, as well as protected routes that require authentication.
 
-# Technologies Used
+## Technologies Used
 
 - Node.js
 - Express.js
@@ -24,7 +24,7 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
 - bcrypt (for password hashing)
 - PostgreSQL (as the database)
 
-# User Registration
+## User Registration
 
 1. **Process:**
 
@@ -53,7 +53,7 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
    });
    ```
 
-# User Login
+## User Login
 
 1. **Process:**
 
@@ -81,7 +81,7 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
    }
    ```
 
-# Password Reset Process
+## Password Reset Process
 
 1. **Steps:**
 
@@ -104,7 +104,7 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
    });
    ```
 
-# JWT (JSON Web Token)
+## JWT (JSON Web Token)
 
 1. **Structure:**
 
@@ -121,7 +121,7 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
    - Tokens are included in the Authorization header of requests.
    - Format: `Authorization: Bearer <token>`
 
-# Token Verification
+## Token Verification
 
 1. **Process:**
 
@@ -145,7 +145,7 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
    }
    ```
 
-# Security Measures
+## Security Measures
 
 1. **Password Hashing:** All passwords are hashed using bcrypt before storage.
 2. **JWT Secret:** Stored in environment variables, not in the codebase.
@@ -154,7 +154,7 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
 5. **Input Validation:** All user inputs are validated before processing.
 6. **Limited answer attempts:** For security questions, there's a limit on the number of answer attempts (maxAnswerAttempts set to 4).
 
-# API Endpoints
+## API Endpoints
 
 1. **Registration:** `POST /auth/register`
 2. **Login:** `POST /auth/login`
@@ -165,7 +165,7 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
 
 For detailed API documentation, refer to the API Documentation file.
 
-# Best Practices for Frontend
+## Best Practices for Frontend
 
 1. Store JWT in HttpOnly cookies or secure local storage.
 2. Implement token refresh mechanism to maintain user sessions.

@@ -1,4 +1,4 @@
-## Woof Reading Frontend Architecture
+# Woof Reading Frontend Architecture
 
 Table of Contents
 
@@ -12,18 +12,18 @@ Table of Contents
 8. Authentication Flow
 9. Game Logic
 
-# Overview
+## Overview
 
 The Woof Reading frontend is a React-based single-page application (SPA) designed to provide an interactive and engaging reading comprehension experience for users. It features a game-like interface where users can read stories, answer questions, and earn points and badges.
 
-# Technology Stack
+## Technology Stack
 
 - React.js
 - React Router for navigation
 - Material-UI for some UI components
 - Custom CSS for styling
 
-# Project Structure
+## Project Structure
 
 src/
 ├── components/
@@ -51,7 +51,7 @@ src/
 ├── App.jsx
 └── main.jsx
 
-# Key Components
+## Key Components
 
 - App.jsx: The main component that sets up routing and manages global state.
 - Nav.jsx: The navigation bar component including username, present across all pages.
@@ -61,7 +61,7 @@ src/
 - StorySelector.jsx: Allows users to select story topics and types from an array of prompts in utils/storyPrompts.
 - Slider.jsx: Enables users to adjust the difficulty level of the stories.
 
-# Routing
+## Routing
 
 Routing is handled using React Router. The main routes are:
 
@@ -73,7 +73,7 @@ Routing is handled using React Router. The main routes are:
 - /about: Information about the application
 - /prompts: Displays available story prompts
 
-# State Management
+## State Management
 
 State management is primarily handled using React's useState and useEffect hooks. Key state variables include:
 
@@ -84,7 +84,7 @@ State management is primarily handled using React's useState and useEffect hooks
 
 State is passed down to child components as props, and update functions are passed to allow child components to update the state.
 
-# API Integration
+## API Integration
 
 API calls are made using the fetch API. Key integrations include:
 
@@ -93,14 +93,14 @@ API calls are made using the fetch API. Key integrations include:
 - Score and badge updates
 - Anthropic API for story generation and answer evaluation
 
-# Authentication Flow
+## Authentication Flow
 
 - User logs in via the form (currently, registration is handled via woofmath.com).
 - On successful authentication, a JWT token is stored in localStorage.
 - The token is included in the Authorization header for subsequent API requests.
 - If the token expires, the user is redirected to the Welcome page.
 
-# Game Logic
+## Game Logic
 
 The game flow is primarily managed in the GamePlay.jsx component:
 
@@ -112,12 +112,12 @@ The game flow is primarily managed in the GamePlay.jsx component:
 6. For any incorrect answers, feedback is passed to the UI from the API response.
 7. Badges are awarded based on cumulative score milestones.
 
-# UI/UX Considerations
+## UI/UX Considerations
 
 - Responsive design for both desktop and mobile users.
 - Accessibility features (to be detailed further).
 - Engaging animations for badge awards and score updates.
 
-# Future Enhancements
+## Future Enhancements
 
 - Implement advanced caching strategies on generated stories for improved performance.

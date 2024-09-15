@@ -8,26 +8,6 @@ const { verifyToken } = require("../utilities/verifyToken");
 
 const prisma = new PrismaClient();
 
-// Gets all users
-// "Include" statement pulls in related data models / tables to the user
-router.get("/", async (req, res) => {
-  try {
-    const users = await prisma.user.findMany({
-      include: {
-        score: true,
-        badge: true,
-        score_reading: true,
-        badge_reading: true,
-        game_state: true,
-      },
-    });
-    res.status(200).send(users);
-  } catch (error) {
-    console.log(error);
-    res.sendStatus(500);
-  }
-});
-
 // Gets a single user
 // validate and find user info
 router.get("/me", verifyToken, async (req, res) => {

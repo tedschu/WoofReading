@@ -7,6 +7,7 @@ const { PrismaClient } = require("@prisma/client");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const morgan = require("morgan");
+const rateLimit = require("express-rate-limit");
 
 const prisma = new PrismaClient();
 const port = process.env.PORT || 8080;
