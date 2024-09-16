@@ -92,34 +92,47 @@ if (checkBadWords() === true) {
 ### localStorage Usage
 
 - JWTs stored in localStorage
-- Vulnerable to XSS attacks, consider using httpOnly cookies in production
 
 ### Content Security Policy
 
-- Not currently implemented, but recommended to prevent XSS attacks
+- Content Security Policy has been implemented using the Helmet middleware to enhance protection against Cross-Site Scripting (XSS) attacks and other injection vulnerabilities.
 
-## Secure Communication
+#### Implementation
 
-- HTTPS should be enforced in production
-- Not visible in the provided code, but recommended:
+The CSP is configured in the main server file using Helmet:
 
 ```javascript
-const express = require("express");
-const https = require("https");
-const fs = require("fs");
+const helmet = require("helmet");
 
-const app = express();
-
-https
-  .createServer(
-    {
-      key: fs.readFileSync("path/to/key.pem"),
-      cert: fs.readFileSync("path/to/cert.pem"),
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "https://fonts.googleapis.com"],
+      imgSrc: ["'self'", "data:"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      connectSrc: ["'self'", "https://api.anthropic.com"],
+      frameSrc: ["'none'"],
+      objectSrc: ["'none'"],
+      upgradeInsecureRequests: [],
+      workerSrc: ["'none'"],
     },
-    app
-  )
-  .listen(443);
+  })
+);
 ```
+
+#### Policy Details
+
+- **defaultSrc**: Restricts resource loading to the same origin by default.
+- **scriptSrc**: Allows scripts only from the same origin, preventing inline scripts and eval().
+- **styleSrc**: Allows styles from the same origin and Google Fonts, preventing inline styles.
+- **imgSrc**: Permits images from the same origin and data URIs.
+- **fontSrc**: Allows fonts from the same origin and Google Fonts.
+- **connectSrc**: Enables connections to the same origin and the Anthropic API.
+- **frameSrc** and **objectSrc**: Set to 'none' to prevent use of iframes and plugins.
+- **upgradeInsecureRequests**: Upgrades HTTP requests to HTTPS.
+- **workerSrc**: Set to 'none' to prevent Web Workers, as they are not currently used in the application.
 
 ## User Data Handling
 
@@ -138,15 +151,6 @@ router.delete("/:id", verifyToken, async (req, res) => {
 });
 ```
 
-## Security Headers
-
-- Not currently implemented, but recommended to add security headers:
-
-```javascript
-const helmet = require("helmet");
-app.use(helmet());
-```
-
 ## Logging and Monitoring
 
 - Basic request logging implemented using Morgan:
@@ -154,24 +158,3 @@ app.use(helmet());
 ```javascript
 app.use(morgan("dev"));
 ```
-
-- Consider implementing more comprehensive logging and monitoring for production
-
-## Regular Updates and Patching
-
-- Regularly update dependencies to patch known vulnerabilities
-- Use `npm audit` to check for vulnerabilities in dependencies
-
-## Security Testing
-
-- Implement regular security testing, including:
-  - Penetration testing
-  - Vulnerability scanning
-  - Code reviews with a security focus
-
-## Incident Response Plan
-
-- Develop and maintain an incident response plan
-- Regular drills and updates to the plan are recommended
-
-By following these security practices, the Woof Reading application aims to protect user data and maintain a secure environment. However, security is an ongoing process, and these practices should be regularly reviewed and updated.
