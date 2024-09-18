@@ -26,6 +26,7 @@ The Woof Reading frontend is a React-based single-page application (SPA) designe
 ## Project Structure
 
 src/
+├── assets/ (images for badges and icons)
 ├── components/
 │ ├── BadgeModal.jsx
 │ ├── CircularColor.jsx
@@ -49,6 +50,7 @@ src/
 │ ├── badWords.js
 │ └── storyPrompts.js
 ├── App.jsx
+├── index.css
 └── main.jsx
 
 ## Key Components

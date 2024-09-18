@@ -15,7 +15,7 @@ Woof Reading (woofreading.com) is a full-stack reading comprehension game applic
 1. Clone the repository
 2. Install dependencies & build: cd server && npm install && cd ../client && npm install && npm run build
 3. Set up PostgreSQL database
-4. Start client & server: concurrently \"nodemon ./api/index.js\" \"cd .. && cd client && npm run dev\
+4. Start client & server: cd server && npm run start:dev
 
 # Detailed documentation
 

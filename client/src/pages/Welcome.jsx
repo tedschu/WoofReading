@@ -24,7 +24,7 @@ function Welcome() {
           </div>
 
           <div className="welcomeContentContainer">
-            <h1>Woof Reading (beta)</h1>
+            <h1>Woof Reading</h1>
             <p>
               Do some fun reading and win awesome dog badges along the way. The
               more reading you do, the more badges you get!

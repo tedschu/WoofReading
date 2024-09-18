@@ -28,7 +28,7 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
 
 1. **Process:**
 
-   - User submits registration data (birth_year, email, username, password, security questions and answers).
+   - User submits registration data (email, username, password, security questions and answers).
    - Server validates the data.
    - Password is hashed using bcrypt.
    - User data is stored in the database.
@@ -164,10 +164,3 @@ The Woof Reading application uses a JWT (JSON Web Token)-based authentication sy
 6. **Reset Password:** `PUT /auth/reset-password`
 
 For detailed API documentation, refer to the API Documentation file.
-
-## Best Practices for Frontend
-
-1. Store JWT in HttpOnly cookies or secure local storage.
-2. Implement token refresh mechanism to maintain user sessions.
-3. Clear token on user logout.
-4. Include token in Authorization header for all authenticated requests.
