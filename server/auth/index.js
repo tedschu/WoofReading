@@ -26,7 +26,12 @@ router.post("/register", async (req, res) => {
     });
 
     if (existingUser) {
-      return res.status(400).json({ error: "Username already exists." });
+      return res
+        .status(400)
+        .json({
+          error:
+            "Username already exists. If you have an existing Woof username,  you can use it for Woof Math and Woof Reading.",
+        });
     }
 
     if (
@@ -54,6 +59,7 @@ router.post("/register", async (req, res) => {
         security_question_2: req.body.security_question_2,
         security_answer_2: req.body.security_answer_2,
         total_logins: 1,
+        has_WoofReading: true,
         last_login: new Date().toISOString(),
         score: {
           create: {
@@ -76,13 +82,21 @@ router.post("/register", async (req, res) => {
         badge_reading: {
           create: {
             bernese: false,
+            boxer: false,
+            cat: false,
+            chihuahua: false,
+            golden: false,
+            husky: false,
+            waterdog: false,
+            goldendoodle_trophy: false,
           },
         },
-        user: {
-          create: {
-            has_WoofReading: true,
-          },
-        },
+      },
+      include: {
+        score: true,
+        badge: true,
+        score_reading: true,
+        badge_reading: true,
       },
     });
 

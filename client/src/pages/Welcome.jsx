@@ -35,7 +35,7 @@ function Welcome() {
                 <button className="button login">LOGIN</button>
               </Link>
               <Link to={"/register"}>
-                <button className="button signup">REQUEST AN INVITE</button>
+                <button className="button signup">SIGN UP</button>
               </Link>
             </div>
           </div>
