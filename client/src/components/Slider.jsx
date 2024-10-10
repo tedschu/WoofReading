@@ -8,11 +8,23 @@ import Slider from "@mui/material/Slider";
 const marks = [
   {
     value: 1,
-    label: "Easier",
+    label: "K - 1st",
+  },
+  {
+    value: 2,
+    label: "2nd",
+  },
+  {
+    value: 3,
+    label: "3rd",
+  },
+  {
+    value: 4,
+    label: "4th",
   },
   {
     value: 5,
-    label: "Harder",
+    label: "5th+",
   },
 ];
 
@@ -88,7 +100,7 @@ export default function DiscreteSlider({
 
   return (
     <div className="sliderContainer">
-      <h3>How challenging should the story be?</h3>
+      <h3>What reading level should the story be at?</h3>
 
       <Box sx={{ width: 300 }} className="sliderBox">
         <Slider

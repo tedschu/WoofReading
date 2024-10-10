@@ -162,7 +162,7 @@ router.post("/evaluate_answers", async (req, res) => {
               "Question": "First question",
               "Answer": "First answer",
               "is_correct": true or false (boolean),
-              "feedback": "Return feedback on first answer if "is_correct" is false. Focus your feedback on the correct answer, and do not tell the user to try again. Otherwise, return 'null'"
+              "feedback": "Return feedback on first answer if "is_correct" is false. Focus your feedback on the correct answer, referencing where in the text the answer could be found, and do not tell the user to try again. Otherwise, return 'null'"
             },
           ...
         ],
