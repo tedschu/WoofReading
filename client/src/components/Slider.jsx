@@ -76,23 +76,23 @@ export default function DiscreteSlider({
 
     switch (sliderValue) {
       case 1:
-        points = 10;
+        points = 15;
         setPointsToWin(points);
         break;
       case 2:
-        points = 12;
+        points = 17;
         setPointsToWin(points);
         break;
       case 3:
-        points = 14;
+        points = 20;
         setPointsToWin(points);
         break;
       case 4:
-        points = 16;
+        points = 24;
         setPointsToWin(points);
         break;
       case 5:
-        points = 18;
+        points = 28;
         setPointsToWin(points);
         break;
     }
