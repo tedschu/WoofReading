@@ -262,8 +262,8 @@ button {
 }
 
 .welcomeContentContainer > h1 {
-  font-size: 55px;
-  font-family: "Schoolbell";
+  font-size: 60px;
+  /* font-family: "Schoolbell"; */
 }
 
 .welcomeButtonContainer {
@@ -423,11 +423,11 @@ nav {
 }
 
 .navTitle {
-  font-size: 30px;
+  font-size: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Schoolbell";
+  /* font-family: "Schoolbell"; */
   color: white;
 }
 
