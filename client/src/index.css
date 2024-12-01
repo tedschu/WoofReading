@@ -423,7 +423,7 @@ nav {
 }
 
 .navTitle {
-  font-size: 40px;
+  font-size: 36px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1315,7 +1315,7 @@ ul li {
   }
 
   .navTitle {
-    font-size: 36px;
+    font-size: 40px;
   }
 
   .navLogo > img {
